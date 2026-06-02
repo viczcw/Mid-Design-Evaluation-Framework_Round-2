@@ -1,2 +1,2 @@
-# Mid-Design-Evaluation-Framework_3
-The third prototype of the mid-design evaluation framework: Print-Friendly Workbook Format
+# Mid-Design-Evaluation-Guide_Round 2
+This is the mid-design evaluation guide refined based on round 1 Delphi Panelists feedback. 
