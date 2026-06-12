@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mid-Design Evaluation Framework@Chuwen Zheng</title>
+  <title>Mid-Design Evaluation Guide@Chuwen Zheng</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
   <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
@@ -127,6 +127,9 @@
             "Green, C. A., Duan, N., Gibbons, R. D., Hoagwood, K. E., Palinkas, L. A., & Wisdom, J. P. (2015). Approaches to Mixed Methods Dissemination and Implementation Research: Methods, Strengths, Caveats, and Opportunities. Administration and Policy in Mental Health and Mental Health Services Research, 42(5), 508–523. https://doi.org/10.1007/s10488-014-0552-6",
             "Palinkas LA, Aarons GA, Horwitz S, Chamberlain P, Hurlburt M, Landsverk J. Mixed Method Designs in Implementation Research. Adm Policy Ment Health. 2011;38(1):44-53. doi:10.1007/s10488-010-0314-z",
             "Hamilton AB, Finley EP. Qualitative methods in implementation research: An introduction. Psychiatry Res. 2019;280:112516. doi:10.1016/j.psychres.2019.112516",
+            "Thiyagarajan D, Wilder L, O’Brien A, et al. Development of a novel device for urine-based human papillomavirus screening in low- and middle-income countries. Int J Gynecol Obstet. 2025;171:460-461. doi:10.1002/ijgo.70216",
+            "Thiyagarajan D, Gauger M, Patel R, Quarshie T, Adanu EA, Kramer J, Sienko KH, Moyer CA, Stout M, Rooney DM, Oppong SA, Swarray-Deen A, Lawrence E. Development and evaluation of an external cephalic version simulation-based educational program. AJOG Glob Rep. 2025;6(1):100577. doi:10.1016/j.xagr.2025.100577",
+            "Suchman L, Omoluabi E, Kramer J, Vallin J, Sedlander E, Gitome S, Wekesa P, Kwena Z, Granovsky R, Kayego A, Kaudha B, Atuyambe L, Amongin D, Alitubeera P, Tijani A, Okoli C, Jegede A, Kamanga M, Nyando M, Ndunyu L, Holt K, The ICAN Contraceptive Self-Injection Support Program Research Consortium. Analyzing fast and slow: Combining traditional and rapid qualitative analysis to meet multiple objectives of a complex transnational study. Front Sociol. 2023;8:961202. doi:10.3389/fsoc.2023.961202",
             "Lewis CC, Fischer S, Weiner BJ, Stanick C, Kim M, Martinez RG. Outcomes for implementation science: an enhanced systematic review of instruments using evidence-based rating criteria. Implement Sci. 2015;10(1):155. doi:10.1186/s13012-015-0342-x",
             "Weiner BJ, Lewis CC, Stanick C, et al. Psychometric assessment of three newly developed implementation outcome measures. Implement Sci. 2017;12(1):108. doi:10.1186/s13012-017-0635-3",
             "Kenworthy T, Domlyn A, Scott VC, Schwartz R, Wandersman A. A Proactive, Systematic Approach to Building the Capacity of Technical Assistance Providers. Health Promot Pract. 2023;24(3):546-559. doi:10.1177/15248399221080096",
@@ -153,33 +156,113 @@
             "Savaya, R., & Waysman, M. (2005). The Logic Model: A Tool for Incorporating Theory in Development and Evaluation of Programs. Administration in Social Work, 29(2), 85–103. https://doi.org/10.1300/J147v29n02_06"
     ];
 
+    const CASE_EXAMPLES = [
+      {
+        id: "urine_hpv",
+        title: "Urine-Based HPV Screening Device",
+        citation: "5",
+        expertiseArea: "Medical device design",
+        description: "This project developed a first-void urine collection device for HPV screening in low-resource settings, with a focus on Ghana. The device was designed to support urine-based HPV screening, a promising alternative for overcoming traditional screening barriers such as cost, limited access to trained clinicians, and patient discomfort. Specifically, it aimed to avoid collecting inconsistent or excess urine, which can dilute the sample and reduce HPV detection accuracy. The prototype collects the first 20 mL of urine through a reusable bracket/funnel system, a single-use check valve, and a reusable collection vial. The team developed and evaluated the device through literature review, stakeholder interviews, verification testing, and preliminary validation with OBGYN clinicians at Korle Bu Teaching Hospital."
+      },
+      {
+        id: "ecv_simulation",
+        title: "External Cephalic Version Simulation Program",
+        citation: "6",
+        expertiseArea: "Medical education design",
+        description: "This project developed and evaluated a low-cost simulation-based educational program for external cephalic version in Ghana. The program addressed the need for skilled ECV performance in low-resource settings, where limited training opportunities can hinder clinicians’ ability to offer and perform the procedure. It included an educational video, procedural checklist, task trainer, pre/post questionnaires, and skill assessment. The program was refined through a three-round Delphi panel and evaluated in a cluster randomized study with clinicians at Korle Bu Teaching Hospital."
+      },
+      {
+        id: "ican-self-injection",
+        title: "ICAN Contraceptive Self-Injection Support Program",
+        citation: "7",
+        expertiseArea: "Public health intervention design",
+        description: "This project developed the ICAN Contraceptive Self-Injection Support Program to improve access to contraception in rural Malawi. DMPA-SC is a self-injectable contraceptive administered every three months that can help address barriers related to geographic access, continuity, and privacy. However, women may need additional support to feel confident self-injecting, and health surveillance assistants face implementation constraints such as high workload, limited transportation, inadequate scheduling support, and limited time for contraceptive counseling. The project used human-centered design with women, health surveillance assistants, community leaders, and health system stakeholders to develop a context-specific intervention that includes Health Surveillance Assistants workflow support, transportation and lunch support for outreach clinics, peer support from experienced DMPA-SC self-injection users, and a mnemonic to help women remember key self-injection steps."
+      }
+    ]; 
+
     const FRAMEWORK_DATA = [
+      {
+        id: "appropriateness",
+        title: "Appropriateness",
+        type: "design",
+        definition: <>The perceived fit, relevance, or compatibility of the innovation for a given practice setting, provider, or consumer; and/or perceived fit to address a particular issue. <Sup>1,8</Sup></>,
+        relevantTerms: ["Perceived fit", "Relevance", "Compatibility", "Suitability", "Usefulness", "Practicability","Usability"],
+        outcomeExamples: [
+          {
+            citation: "5",
+            text: "In the Urine-Based HPV Screening Device, appropriateness is illustrated by whether a urine-based collection device fits cervical cancer screening in Ghana, where existing screening barriers include cost, limited access to trained clinicians, and patient discomfort. Clinicians viewed the device as appropriate because urine collection was familiar, supported patient autonomy, and could increase screening access, while concerns about squat-toilet compatibility, hygiene, and durability showed where the device may not fully fit some use contexts."
+          },
+          {
+            citation: "6",
+            text: "In the External Cephalic Version Simulation Program, appropriateness is illustrated by whether a low-cost simulation program is relevant for a setting where ECV is underused because clinicians have limited training opportunities."
+          },
+          {
+            citation: "7",
+            text: "In the ICAN Contraceptive Self-Injection Support Program, appropriateness is illustrated by whether the intervention fits rural Malawi’s contraceptive access problem, women’s need for privacy and peer support, and HSAs’ outreach constraints."
+          }
+        ],        
+        interviewCitation: "1,8,9",
+        interestHolders: [
+          "Subject matter experts (i.e., those who have experience working to implement similar types of interventions)",
+          "Future implementers (i.e., those who may help put the intervention into practice and support its use in the real world)",
+          "Future users (e.g., health care professionals)",
+          "Future beneficiaries/recipients (e.g., patients)"
+        ],
+        topics: [
+          { title: "Perceived necessity for the problem at hand", question: "To what extent is [the specific problem or gap in care] important or necessary to address, and why?" },
+          { title: "Relevance to the clinical problem or population", question: "How does this healthcare innovation address [the specific clinical problem] and [the needs, priorities, or circumstances of the intended patient population]?" },
+          { title: "Compatibility with organizational missions or values", question: "Where do you see potential conflicts between the values of this innovation and the values that govern your work here?" },
+          { title: "Fit within existing clinical models or standards of care", question: "In what ways would this healthcare innovation align with or differ from current clinical workflows, care models, or standards of care?" },
+          { title: "Perceived effectiveness for addressing the targeted issue", question: "What are your thoughts on how effective this healthcare innovation will be in achieving [its intended clinical purpose]?" }
+        ],
+        quantitativeStrategies: [
+          { name: "Intervention Appropriateness Measure (IAM)", citation: "12", referenceUrl: "https://doi.org/10.1186/s13012-017-0635-3", instrumentUrl: "https://dissemination-implementation.org/wp-content/uploads/2024/09/Acceptability-Appropriateness-Feasibility-Scale.docx", instrumentLabel: "FIM/AIM/IAM Instrument Link:", description: <>Use the 4-item IAM questionnaire measurement to assess whether a medical intervention innovation is perceived as a good fit for the clinical problem, intended users, and implementation setting. It helps designers determine whether the innovation is relevant, compatible, and well-matched to the context in which it is meant to be used before full-scale implementation.</> }
+        ],
+        qualitativeStrategies: [
+          { name: "Field Observation: pre-patient-reported outcome measurement implementation", citation: "12", referenceUrl: "https://doi.org/10.1186/s43058-026-00859-5", description: <>Conduct field observations using ethnographic methods to identify site-level differences in clinic layouts, staffing stability, and patient digital literacy that surveys or interviews alone may miss when assessing organizational readiness and appropriateness for a new medical intervention innovation, particularly in low-resourced settings such as community cancer centers.</> }
+        ]
+      },
       {
         id: "feasibility",
         title: "Feasibility",
         type: "design",
-        definition: <>The extent to which a new treatment or innovation can be successfully used or carried out within a given agency or setting. <Sup>1,5</Sup></>,
-        interviewCitation: "1,5,6",
+        definition: <>The extent to which a new treatment or innovation can be successfully used or carried out within a given agency or setting. <Sup>1,8</Sup></>,
+        relevantTerms: ["Actual fit or utility", "Suitability for everyday use", "Practicability"],
+        outcomeExamples: [
+          {
+            citation: "5",
+            text: "In the Urine-Based HPV Screening Device, feasibility is illustrated by whether clinicians and patients can set up, use, clean, and integrate the device into existing screening workflows."
+          },
+          {
+            citation: "6",
+            text: "In the External Cephalic Version Simulation Program, feasibility is illustrated by whether the program can be delivered in a low-resource teaching hospital using an affordable task trainer, accessible materials, brief educational components, and available supervisors/equipment."
+          },
+          {
+            citation: "7",
+            text: "In the ICAN Contraceptive Self-Injection Support Program, feasibility is illustrated by whether HSAs can realistically deliver contraceptive outreach when they face transportation barriers, heavy workloads, limited scheduling support, and limited time for counseling."
+          }
+        ],
+        interviewCitation: "1,8,9",
         interestHolders: [
-          "Technical experts (i.e., those who can assess the technical feasibility of the intervention)",
-          "Future implementers of the intervention (i.e., those who may help put the intervention into practice and support its use in the real world)",
-          "Future users of the intervention (e.g., health care professionals)"
+          "Technical experts (i.e., those who can assess the technical feasibility)",
+          "Future implementers (i.e., those who may help put the intervention into practice and support its use in the real world)",
+          "Future users (e.g., health care professionals)"
         ],
         topics: [
-          { title: "Practical capability for carrying out the design", question: "If this medical innovation requires a bedside nurse to enter one new field in the EHR during discharge, would that step be realistic in a normal shift?" },
-          { title: "Resource availability (time, staffing, equipment, infrastructure)", question: "If this medical innovation depends on one additional tablet in each clinic room, does your clinic already have that equipment available?" },
-          { title: "Training and skill sufficiency", question: "If a respiratory therapist had a 30-minute training session on this medical innovation, would that be enough for them to use it correctly?" },
-          { title: "Ease or difficulty of execution in routine practice", question: "If this medical innovation adds a two-minute setup step before a patient visit, would that feel manageable during a busy clinic day?" },
-          { title: "Perceived implementation burden", question: "If staff had to complete one extra checklist each time this medical innovation is used, would that feel burdensome?" },
-          { title: "Trialability", question: "Could your team pilot this medical innovation with one clinician or one clinic session before deciding whether to expand it?" },
-          { title: "Competing demands and capacity constraints", question: "If your unit is already rolling out a new documentation workflow this month, would that make it harder to test this medical innovation right now?" }
+          { title: "Practical capability for carrying out the design", question: " What resources, skills, or conditions would influence your organization’s ability to carry out this design in practice" },
+          { title: "Resource availability (time, staffing, equipment, infrastructure)", question: "What resources, equipment, or infrastructure would be needed for your clinic to implement this healthcare innovation?" },
+          { title: "Training and skill sufficiency", question: "What existing training programs or onboarding processes could support users in learning to use this healthcare innovation?" },
+          { title: "Ease or difficulty of execution in routine practice", question: "How manageable would any additional setup or preparation steps be within routine clinical workflows?" },
+          { title: "Perceived implementation burden", question: "What additional responsibilities, if any, would staff need to take on to implement this healthcare innovation, and how manageable would those responsibilities be?" },
+          { title: "Trialability", question: "What opportunities are there for the team to try this intervention on a small scale or limited basis before moving to a permanent or bigger scale rollout?" },
+          { title: "Competing demands and capacity constraints", question: "What competing priorities or capacity constraints might affect your organization’s ability to test or implement this healthcare innovation?" }
         ],
         quantitativeStrategies: [
-          { name: "Feasibility of Intervention Measure (FIM)", citation: "6", referenceUrl: "https://doi.org/10.1186/s13012-017-0635-3", instrumentUrl: "https://dissemination-implementation.org/wp-content/uploads/2024/09/Acceptability-Appropriateness-Feasibility-Scale.docx", instrumentLabel: "FIM/AIM/IAM Instrument Link:", description: <>Use the 4-item FIM questionnaire instrument to assess whether a medical intervention innovation is practical to carry out in the intended real-world setting or agency. It helps designers evaluate whether the innovation can realistically be implemented given available time, resources, workflows, and organizational conditions before full-scale rollout.</> },
-          { name: "Readiness Thinking Tool", citation: "7", referenceUrl: "https://doi.org/10.1177/15248399221080096", instrumentUrl: "https://dissemination-implementation.org/wp-content/uploads/2024/09/Readiness-Thinking-Tool-RTT-_Instrument.docx", instrumentLabel: "Readiness Thinking Survey Link:", description: <>Use the structured Readiness Thinking Questionnaire to assess an organization’s readiness to implement a medical intervention innovation by capturing motivations, innovation-specific capacity, and general capacity.</> }
+          { name: "Feasibility of Intervention Measure (FIM)", citation: "12", referenceUrl: "https://doi.org/10.1186/s13012-017-0635-3", instrumentUrl: "https://dissemination-implementation.org/wp-content/uploads/2024/09/Acceptability-Appropriateness-Feasibility-Scale.docx", instrumentLabel: "FIM/AIM/IAM Instrument Link:", description: <>Use the 4-item FIM questionnaire instrument to assess whether a medical intervention innovation is practical to carry out in the intended real-world setting or agency. It helps designers evaluate whether the innovation can realistically be implemented given available time, resources, workflows, and organizational conditions before full-scale rollout.</> },
+          { name: "Readiness Thinking Tool", citation: "13", referenceUrl: "https://doi.org/10.1177/15248399221080096", instrumentUrl: "https://dissemination-implementation.org/wp-content/uploads/2024/09/Readiness-Thinking-Tool-RTT-_Instrument.docx", instrumentLabel: "Readiness Thinking Survey Link:", description: <>Use the structured Readiness Thinking Questionnaire to assess an organization’s readiness to implement a medical intervention innovation by capturing motivations, innovation-specific capacity, and general capacity.</> }
         ],
         qualitativeStrategies: [
-          { name: "Readiness Thinking Observation Guide", citation: "7", referenceUrl: "https://doi.org/10.1177/15248399221080096", instrumentUrl: "https://dissemination-implementation.org/wp-content/uploads/2024/09/531c7f_dbd8360b53b146b6a4fbffcb321cacfd.pdf", instrumentLabel: "Readiness Thinking Observation Guide Link:", description: <>Use the structured, workflow-based Readiness Thinking Observation Guide to identify challenges, strengths, and areas of uncertainty related to an organization’s motivation, innovation-specific capacity, and general capacity to implement a medical intervention innovation. The link embedded in the strategy title will direct you to the original article in which this strategy was introduced or further developed.</> },
+          { name: "Readiness Thinking Observation Guide", citation: "13", referenceUrl: "https://doi.org/10.1177/15248399221080096", instrumentUrl: "https://dissemination-implementation.org/wp-content/uploads/2024/09/531c7f_dbd8360b53b146b6a4fbffcb321cacfd.pdf", instrumentLabel: "Readiness Thinking Observation Guide Link:", description: <>Use the structured, workflow-based Readiness Thinking Observation Guide to identify challenges, strengths, and areas of uncertainty related to an organization’s motivation, innovation-specific capacity, and general capacity to implement a medical intervention innovation. The link embedded in the strategy title will direct you to the original article in which this strategy was introduced or further developed.</> },
           { name: "Workflow Analysis", citation: "", referenceUrl: "https://doi.org/10.2196/18534", description: <>Use workflow analysis as a structured, real-time observational approach to understand how care is actually delivered in clinical settings by documenting tasks, interactions, communication patterns, and contextual conditions as they unfold. In the context of medical intervention innovation, it helps designers identify workflow bottlenecks, role responsibilities, environmental constraints, and other implementation friction points so they can refine an intervention to better fit the realities of practice before full-scale implementation. The link embedded in the strategy title will direct you to the original article in which this strategy was introduced or further developed.</> }
         ]
       },
@@ -187,80 +270,84 @@
         id: "acceptability",
         title: "Acceptability",
         type: "design",
-        definition: <>The perception among implementation stakeholders that a given treatment, service, practice, or innovation is agreeable, palatable, or satisfactory. <Sup>1,5</Sup></>,
-        interviewCitation: "1,5,6",
+        definition: <>The perception among implementation stakeholders that a given treatment, service, practice, or innovation is agreeable, palatable, or satisfactory. <Sup>1,8</Sup></>,
+        relevantTerms: ["Satisfaction", "Content", "Complexity", "Comfort", "Delivery", "Credibility"],
+        outcomeExamples: [
+          {
+            citation: "5",
+            text: "In the Urine-Based HPV Screening Device, acceptability is illustrated by whether clinicians and patients view the device as acceptable in terms of its design, functionality, and integration into existing workflows."
+          },
+          {
+            citation: "6",
+            text: "In the External Cephalic Version Simulation Program, acceptability is illustrated by whether healthcare providers find the simulation program acceptable for use in their training programs."
+          },
+          {
+            citation: "7",
+            text: "In the ICAN Contraceptive Self-Injection Support Program, acceptability is illustrated by whether women feel comfortable and willing to use the self-injection support program for contraceptive management."
+          }
+        ],
+        interviewCitation: "1,8,9",
         interestHolders: [
-          "Technical experts (i.e., those who can assess the technical feasibility of the intervention)",
+          "Technical experts (i.e., those who can assess the technical feasibility)",
           "Subject matter experts (i.e., those who have experience working to implement similar types of interventions)",
-          "Future implementers of the intervention (i.e., those who may help put the intervention into practice and support its use in the real world)",
-          "Future users of the intervention (e.g., health care professionals)",
-          "Future beneficiaries of the intervention (e.g., patients)"
+          "Future implementers (i.e., those who may help put the intervention into practice and support its use in the real world)",
+          "Future users (e.g., health care professionals)",
+          "Future beneficiaries/recipients (e.g., patients)"
         ],
         topics: [
-          { title: "Overall satisfaction", question: "If this medical innovation replaced your current intake form, would you feel satisfied using it as the new standard process?" },
-          { title: "Emotional reactions", question: "When you look at this medical innovation, is your first reaction more reassuring or more frustrating?" },
-          { title: "Perceived comfort", question: "Would you feel comfortable using this medical innovation with an older adult who is anxious about technology?" },
-          { title: "Alignment with personal preferences", question: "Does this medical innovation fit the way you prefer care to be delivered during a routine visit?" },
-          { title: "Willingness for engagement", question: "What one change would make you more willing to try this medical innovation in your own work?" },
-          { title: "Perceived advantages", question: "Compared with your current approach, what is the single biggest advantage of this medical innovation?" },
-          { title: "Trust and confidence", question: "Would you trust this medical innovation to support a safe decision during a time-pressured clinic visit?" }
+          { title: "Overall satisfaction", question: "How does this healthcare innovation align with your expectations for high-quality care?" },
+          { title: "Emotional reactions", question: "What aspects of this healthcare innovation feel reassuring, frustrating, concerning, or appealing to you, and why?" },
+          { title: "Perceived comfort", question: "How comfortable would you feel using this healthcare innovation with patients who may have concerns or anxiety about it?" },
+          { title: "Alignment with personal preferences", question: "How does this healthcare innovation align with your personal ideas about how care should be delivered?" },
+          { title: "Willingness for engagement", question: "What aspects of this healthcare innovation influence your willingness to engage with it or try it in practice?" },
+          { title: "Perceived advantages", question: "What advantages, if any, do you see this healthcare innovation offering compared with current approaches?" },
+          { title: "Trust and confidence", question: "What would make you trust, or question, whether this healthcare innovation would work as intended in real-world practice?" }
         ],
         quantitativeStrategies: [
-          { name: "Individual-Level Technology Acceptance Model (TAM)", citation: "8", referenceUrl: "https://doi.org/10.1055/s-0038-1668091", description: <>Use the TAM to predict and explain how likely individuals are to accept a new medical intervention innovation. TAM does this by examining key factors such as Perceived Usefulness (PU), or whether users believe the intervention will improve their performance or efficiency, and Perceived Ease of Use (PEOU), or whether they believe it will be easy to use; these perceptions can be assessed across different user groups and contextual conditions.</> },
-          { name: "Acceptability of Intervention Measure (AIM)", citation: "6", referenceUrl: "https://doi.org/10.1186/s13012-017-0635-3", instrumentUrl: "https://dissemination-implementation.org/wp-content/uploads/2024/09/Acceptability-Appropriateness-Feasibility-Scale.docx", instrumentLabel: "FIM/AIM/IAM Instrument Link:", description: <>Use the 4-item AIM questionnaire measurement to assess whether a medical intervention innovation is viewed as satisfactory, agreeable, or acceptable by key stakeholders. It helps designers understand how those involved may respond to the innovation and identify areas that may need refinement before broader implementation.</> }
+          { name: "Individual-Level Technology Acceptance Model (TAM)", citation: "11", referenceUrl: "https://doi.org/10.1055/s-0038-1668091", description: <>Use the TAM to predict and explain how likely individuals are to accept a new medical intervention innovation. TAM does this by examining key factors such as Perceived Usefulness (PU), or whether users believe the intervention will improve their performance or efficiency, and Perceived Ease of Use (PEOU), or whether they believe it will be easy to use; these perceptions can be assessed across different user groups and contextual conditions.</> },
+          { name: "Acceptability of Intervention Measure (AIM)", citation: "12", referenceUrl: "https://doi.org/10.1186/s13012-017-0635-3", instrumentUrl: "https://dissemination-implementation.org/wp-content/uploads/2024/09/Acceptability-Appropriateness-Feasibility-Scale.docx", instrumentLabel: "FIM/AIM/IAM Instrument Link:", description: <>Use the 4-item AIM questionnaire measurement to assess whether a medical intervention innovation is viewed as satisfactory, agreeable, or acceptable by key stakeholders. It helps designers understand how those involved may respond to the innovation and identify areas that may need refinement before broader implementation.</> }
         ],
         qualitativeStrategies: []
-      },
-      {
-        id: "appropriateness",
-        title: "Appropriateness",
-        type: "design",
-        definition: <>The perceived fit, relevance, or compatibility of the innovation for a given practice setting, provider, or consumer; and/or perceived fit to address a particular issue. <Sup>1,5</Sup></>,
-        interviewCitation: "1,5,6",
-        interestHolders: [
-          "Subject matter experts (i.e., those who have experience working to implement similar types of interventions)",
-          "Future implementers of the intervention (i.e., those who may help put the intervention into practice and support its use in the real world)",
-          "Future users of the intervention (e.g., health care professionals)",
-          "Future beneficiaries of the intervention (e.g., patients)"
-        ],
-        topics: [
-          { title: "Perceived necessity for the problem at hand", question: "If falls during home recovery are your main concern, does this medical innovation directly address that problem?" },
-          { title: "Relevance to the clinical problem or population", question: "For patients with limited English proficiency, does this medical innovation feel relevant to what they actually need?" },
-          { title: "Compatibility with organizational missions or values", question: "Does this medical innovation fit with your clinic’s commitment to equitable and patient-centered care?" },
-          { title: "Fit within existing clinical models or standards of care", question: "Could this medical innovation fit into your current discharge workflow without changing the standard of care?" },
-          { title: "Perceived effectiveness for addressing the targeted issue", question: "Based on what you see here, do you think this medical innovation would improve medication adherence after discharge?" }
-        ],
-        quantitativeStrategies: [
-          { name: "Intervention Appropriateness Measure (IAM)", citation: "6", referenceUrl: "https://doi.org/10.1186/s13012-017-0635-3", instrumentUrl: "https://dissemination-implementation.org/wp-content/uploads/2024/09/Acceptability-Appropriateness-Feasibility-Scale.docx", instrumentLabel: "FIM/AIM/IAM Instrument Link:", description: <>Use the 4-item IAM questionnaire measurement to assess whether a medical intervention innovation is perceived as a good fit for the clinical problem, intended users, and implementation setting. It helps designers determine whether the innovation is relevant, compatible, and well-matched to the context in which it is meant to be used before full-scale implementation.</> }
-        ],
-        qualitativeStrategies: [
-          { name: "Field Observation: pre-patient-reported outcome measurement implementation", citation: "9", referenceUrl: "https://doi.org/10.1186/s43058-026-00859-5", description: <>Conduct field observations using ethnographic methods to identify site-level differences in clinic layouts, staffing stability, and patient digital literacy that surveys or interviews alone may miss when assessing organizational readiness and appropriateness for a new medical intervention innovation, particularly in low-resourced settings such as community cancer centers.</> }
-        ]
       },
       {
         id: "adoption",
         title: "Adoption",
         type: "transitionary",
-        definition: <>The intention, initial decision, or action to try or employ an innovation or evidence-based practice. <Sup>1,5</Sup></>,
-        interviewCitation: "10",
+        definition: <>The intention, initial decision, or action to try or employ an innovation or evidence-based practice. <Sup>1,8</Sup></>,
+        relevantTerms: ["Uptake", "Utilization", "Initial implementation", "Intention to try","Initial engagement"],
+        outcomeExamples: [
+          {
+            citation: "5",
+            text: "In the Urine-Based HPV Screening Device, adoption would mean clinics deciding to use the urine collection device as part of HPV screening workflows."
+          },
+          {
+            citation: "6",
+            text: "In the External Cephalic Version Simulation Program, adoption would mean clinicians beginning to offer, counsel on, supervise, or perform ECV more often after training."
+          },
+          {
+            citation: "7",
+            text: "In the ICAN Contraceptive Self-Injection Support Program, adoption would mean HSAs, supervisors, experienced users, and district health systems deciding to use ICAN components in routine outreach practice."
+          }
+        ],
+        interviewCitation: "13",
         interestHolders: [
-          "Future users of the intervention (e.g., health care professionals)",
-          "Future beneficiaries of the intervention (e.g., patients)",
+          "Future users (e.g., health care professionals)",
+          "Future beneficiaries/recipients (e.g., patients)",
           "Organizational decision-makers (e.g., procurement officers)",
           "Financial decision-makers (e.g., budget officers, financial planning representatives)"
         ],
         topics: [
-          { title: "Perceived relative advantage of the innovation", question: "If this medical innovation saved one follow-up phone call per patient, would that be enough benefit for your team to consider trying it?" },
-          { title: "Compatibility with the current workflow", question: "Could this medical innovation be added to your current rooming process without changing staff roles?" },
-          { title: "Perceived complexity or burden", question: "Would this medical innovation feel too complicated if a clinician had only one minute to learn the main steps?" },
-          { title: "Resource requirements", question: "Would your department need a new budget line before agreeing to trial this medical innovation?" },
-          { title: "Organizational readiness", question: "If leadership announced a 6-week pilot next month, would your team be ready to support it?" },
-          { title: "Social or professional norms", question: "Would your colleagues see trying this medical innovation as consistent with good clinical practice?" },
-          { title: "Conditions for approval or rejection", question: "What single issue would make you say no to adopting this medical innovation?" },
-          { title: "Willingness to trial the innovation", question: "Would you be willing to test this medical innovation with one patient group before deciding on broader use?" }
+          { title: "Perceived relative advantage of the innovation", question: "In what specific ways do you believe this innovation will make your work more effective or efficient?" },
+          { title: "Compatibility with the current workflow", question: "Where do you anticipate the most significant ‘friction points’ between this new protocol and your daily clinical routine?" },
+          { title: "Perceived complexity or burden", question: "Based on your understanding of this healthcare innovation, what parts of using or participating in it seem most demanding or difficult?" },
+          { title: "Resource requirements", question: "What budget, staffing, equipment, space, or infrastructure would be needed before your team could adopt this healthcare innovation?" },
+          { title: "Organizational readiness", question: "Based on your organization’s past experience with change, how prepared do you think the leadership team is to champion this healthcare innovation?" },
+          { title: "Social or professional norms", question: "How would you and your colleagues likely view a decision to adopt this healthcare innovation or move toward this specific model of care, and what norms or expectations might shape those views?" },
+          { title: "Conditions for approval or rejection", question: "What factors would make your team more likely or less likely to approve adoption of this healthcare innovation?" },
+          { title: "Willingness to trial the innovation", question: "How willing would you or your team be to trial this healthcare innovation before deciding whether to adopt it more broadly, and what would shape that willingness?" }
         ],
         quantitativeStrategies: [
-          { name: "Multi-level forecasting measures anticipated adoption or uptake", citation: "10", referenceUrl: "https://doi.org/10.1007/s10488-014-0551-7", description: <>Use the Multi-Level Forecasting Measures to predict the decision to adopt a medical intervention innovation by evaluating 27 specific predictors organized across four contextual levels: External System, Organization, Innovation, and Individual. This tool helps designers gain a comprehensive view of facilitators and barriers in the complex decision-making process behind intervention uptake.</> }
+          { name: "Multi-level forecasting measures anticipated adoption or uptake", citation: "13", referenceUrl: "https://doi.org/10.1007/s10488-014-0551-7", description: <>Use the Multi-Level Forecasting Measures to predict the decision to adopt a medical intervention innovation by evaluating 27 specific predictors organized across four contextual levels: External System, Organization, Innovation, and Individual. This tool helps designers gain a comprehensive view of facilitators and barriers in the complex decision-making process behind intervention uptake.</> }
         ],
         qualitativeStrategies: []
       },
@@ -268,58 +355,89 @@
         id: "implementation_cost",
         title: "Implementation Cost",
         type: "strategy",
-        definition: <>The cost impact of an implementation effort depends on the costs of the particular innovation, the implementation strategy used, and the location of service delivery. <Sup>1,5</Sup></>,
-        interviewCitation: "11-13",
+        definition: <>The cost impact of an implementation effort depends on the costs of the particular innovation, the implementation strategy used, and the location of service delivery. <Sup>1,8</Sup></>,
+        relevantTerms: ["Marginal cost", "Cost-effectiveness", "Cost-benefit"],
+        outcomeExamples: [
+          {
+            citation: "5",
+            text: "In the Urine-Based HPV Screening Device, implementation cost would include device production, reusable and single-use components, cleaning, training, and workflow integration."
+          },
+          {
+            citation: "6",
+            text: "In the External Cephalic Version Simulation Program, implementation cost would include the resources needed to deliver and maintain the training program, including the low-cost $61.32 task trainer, facilitator time, clinician time, training space, materials, and replacement or repair needs. The task trainer cost illustrates one important cost component, but a full assessment would also consider personnel, workflow disruption, and long-term maintenance."
+          },
+          {
+            citation: "7",
+            text: "In the ICAN Contraceptive Self-Injection Support Program, implementation cost would include bicycles, lunch allowances, supervisor planning time, experienced-user support, training, and ongoing coordination."
+          }
+        ],
+        interviewCitation: "14-16",
         interestHolders: [
           "Organizational decision-makers",
           "Management team (e.g., unit managers)",
-          "Future users of the intervention (e.g., health care professionals, nurses, support staff)",
-          "Future beneficiaries of the intervention (e.g., patients)",
+          "Future users (e.g., health care professionals, nurses, support staff)",
+          "Future beneficiaries/recipients (e.g., patients)",
           "Policy/economic environment stakeholders (e.g., finance perspective, reimbursement constraints)"
         ],
         topics: [
-          { title: "Expected workflow changes", question: "If this medical innovation adds a five-minute education step at discharge, where would that time come from in the current workflow?" },
-          { title: "Training burden and frequency", question: "After the initial rollout, how often would staff need refresher training to keep using this medical innovation correctly?" },
-          { title: "Required staffing shifts", question: "Would this medical innovation require a new staff role, or could an existing nurse take on the work?" },
-          { title: "IT or infrastructure changes", question: "Would this medical innovation require a new EHR build before it could be used in practice?" },
-          { title: "Maintenance requirements", question: "Would this medical innovation create an ongoing annual cost for software, device maintenance, or data hosting?" },
-          { title: "Competing initiatives", question: "If your team is already rolling out a new quality dashboard, would that limit capacity to implement this medical innovation?" },
-          { title: "Opportunity cost", question: "If staff spend ten hours each week on this medical innovation, what current activity would they stop doing?" },
-          { title: "Individual participant or patient costs", question: "Would this medical innovation require patients to pay for extra travel, parking, childcare, or unpaid time off work?" }
+          { title: "Expected workflow changes", question: "What steps in the current workflow would need to be added, removed, or changed to implement this healthcare innovation?" },
+          { title: "Training burden and frequency", question: "What training, coaching, or ongoing support would staff need to implement this healthcare innovation, and how often would that support be needed?" },
+          { title: "Required staffing shifts", question: "How would implementing this healthcare innovation affect staff roles, responsibilities, or workload distribution, and to what extent could responsibilities be handled by existing staff versus new specialized roles?" },
+          { title: "IT or infrastructure changes", question: "What technology or infrastructure-related costs might be involved in implementing this healthcare innovation, including system modifications, hardware, or software?" },
+          { title: "Maintenance requirements", question: "What ongoing resources would be needed to maintain this healthcare innovation after initial implementation?" },
+          { title: "Competing initiatives", question: "What other initiatives, mandates, or priorities might affect your team’s ability to implement this healthcare innovation?" },
+          { title: "Opportunity cost", question: "How would dedicating staff time and organizational resources to this healthcare innovation affect other important work?" },
+          { title: "Individual participant or patient costs", question: "What costs or burdens might patients or participants experience when using or engaging with this healthcare innovation, if applicable?" },
+          { title: "Time requirements", question: "How much time would be required to implement this healthcare innovation, including planning, training, routine use, documentation, troubleshooting, and follow-up?" }
         ],
         quantitativeStrategies: [
-          { name: "Stages of Implementation Completion (SIC) and Cost of Implementing New Strategies (COINS)", citation: "14,15", referenceUrl: "https://doi.org/10.1016/j.childyouth.2013.10.006", instrumentUrl: "https://www.oslc.org/sic/", instrumentLabel: "The SIC Framework:", description: <>Use the COINS to map historical implementation resource and cost data directly onto the framework provided by the SIC. The implementation cost is different from the costs of the intervention being delivered. COINS tracks four types of resources: fixed fees, variable fees, travel and lodging, as well as person-hours and salaries. It also highlights the significance of sunk costs, which incur before an intervention or program is even established and are unrecoverable if implementation fails. This strategy also allows for comparisons of different implementation strategies, identification of early warning signs from pre-implementation SIC scores, as well as fiscal planning and resource allocation.</> },
-          { name: "Local-level economic evaluation framework", citation: "11-13", referenceUrl: "https://doi.org/10.1017/S0266462323002775", description: <>Use the local-level economic evaluation framework to estimate the specific costs and consequences for a medical intervention innovation within the local context. This requires designers to look beyond simple budget lines and consider multiple layers of economic impact. Suggested steps: (1) define analytic perspectives such as organization, unit, and patient; (2) use local operational data such as staffing ratios, wage scales, and throughput; and (3) conduct a pragmatic literature scan for cost drivers.</> }
+          { name: "Stages of Implementation Completion (SIC) and Cost of Implementing New Strategies (COINS)", citation: "17,18", referenceUrl: "https://doi.org/10.1016/j.childyouth.2013.10.006", instrumentUrl: "https://www.oslc.org/sic/", instrumentLabel: "The SIC Framework:", description: <>Use the COINS to map historical implementation resource and cost data directly onto the framework provided by the SIC. The implementation cost is different from the costs of the intervention being delivered. COINS tracks four types of resources: fixed fees, variable fees, travel and lodging, as well as person-hours and salaries. It also highlights the significance of sunk costs, which incur before an intervention or program is even established and are unrecoverable if implementation fails. This strategy also allows for comparisons of different implementation strategies, identification of early warning signs from pre-implementation SIC scores, as well as fiscal planning and resource allocation.</> },
+          { name: "Local-level economic evaluation framework", citation: "14-16", referenceUrl: "https://doi.org/10.1017/S0266462323002775", description: <>Use the local-level economic evaluation framework to estimate the specific costs and consequences for a medical intervention innovation within the local context. This requires designers to look beyond simple budget lines and consider multiple layers of economic impact. Suggested steps: (1) define analytic perspectives such as organization, unit, and patient; (2) use local operational data such as staffing ratios, wage scales, and throughput; and (3) conduct a pragmatic literature scan for cost drivers.</> }
         ],
         qualitativeStrategies: [
-          { name: "Document Evidence Review for Local-Level Economic Evaluation", citation: "13", referenceUrl: "https://doi.org/10.1017/S0266462323002775", description: <>Conduct a document evidence review to systematically analyze existing local evidence, such as organizational records, audits, and health system data, to assess baseline context, resource availability, and existing costs before implementation. Recommended review foci include budget allocations, staffing plans, wage schedules, procurement documents, workflow maps, and maintenance contracts.</> }
+          { name: "Document Evidence Review for Local-Level Economic Evaluation", citation: "16", referenceUrl: "https://doi.org/10.1017/S0266462323002775", description: <>Conduct a document evidence review to systematically analyze existing local evidence, such as organizational records, audits, and health system data, to assess baseline context, resource availability, and existing costs before implementation. Recommended review foci include budget allocations, staffing plans, wage schedules, procurement documents, workflow maps, and maintenance contracts.</> }
         ]
       },
       {
         id: "fidelity",
         title: "Fidelity",
         type: "strategy",
-        definition: <>The degree to which an innovation was implemented as it was prescribed in the original protocol or as intended by developers. <Sup>1,5,16,17</Sup></>,
-        interviewCitation: "18,19",
+        definition: <>The degree to which an innovation was implemented as it was prescribed in the original protocol or as intended by developers. <Sup>1,8,19,20</Sup></>,
+        relevantTerms: ["Delivered as intended", "Adherence", "Integrity", "Quality of program delivery"],
+        outcomeExamples: [
+          {
+            citation: "5",
+            text: "In the Urine-Based HPV Screening Device, fidelity would mean users correctly position, assemble, use, clean, and collect the intended first 20 mL of urine rather than collecting inconsistent or excess urine that could dilute the sample."
+          },
+          {
+            citation: "6",
+            text: "In the External Cephalic Version Simulation Program, fidelity is illustrated by whether clinicians follow the intended ECV counseling and procedural steps, represented by the procedural checklist."
+          },
+          {
+            citation: "7",
+            text: "In the ICAN Contraceptive Self-Injection Support Program, fidelity would mean HSAs, supervisors, and experienced users carry out the intended components: bi-weekly planning, full-day outreach support, peer demonstration, follow-up visits, and use of the self-injection mnemonic."
+          }
+        ],
+        interviewCitation: "21,22",
         interestHolders: [
           "Senior leadership (e.g., service line directors, chief medical officer, executive sponsors)",
           "Mid-level operational managers (e.g., clinical managers, program managers, quality improvement directors)",
           "Financial decision-makers",
           "Clinical leadership (e.g., influential physicians, nursing leadership, clinical governance leads)",
           "Implementation infrastructure personnel (e.g., data analytics teams, IT/clinical informatics, EMR support teams)",
-          "Future users of the intervention (e.g., health care professionals, nurses, support staff)"
+          "Future users (e.g., health care professionals, nurses, support staff)"
         ],
         topics: [
-          { title: "Adherence to core components", question: "If this medical innovation has three required steps, which one step could never be skipped without changing what the innovation is supposed to do?" },
-          { title: "Dose and reach", question: "For this medical innovation, what would count as one complete delivery to one eligible patient?" },
-          { title: "Adaptations and modifications", question: "Is there one part of this medical innovation that should be modified for your local patient population before use?" },
-          { title: "Barriers to protocol adherence", question: "Which one required step of this medical innovation would be hardest for staff to perform exactly as intended?" },
-          { title: "Facilitators to protocol adherence", question: "What existing resource would make it easier for staff to deliver this medical innovation as intended?" },
+          { title: "Adherence to core components", question: "As you review the current design, what do you see as the ‘critical ingredients’ or core steps that must be delivered to ensure the intervention remains effective?" },
+          { title: "Dose and reach", question: "What would count as complete or sufficient delivery of this healthcare innovation, and how could you assess whether it reaches the intended users or patients?" },
+          { title: "Adaptations and modifications", question: "What parts of this healthcare innovation might need to be changed to better fit [the local setting, patient population, or clinical workflow]?" },
+          { title: "Barriers to protocol adherence", question: "Which parts of this healthcare innovation might be hardest to deliver consistently, and why?" },
+          { title: "Facilitators to protocol adherence", question: "What existing resource would help your team deliver this healthcare innovation as intended?" },
           { title: "Delivery expectations", question: "How would you know whether staff were delivering this medical innovation with quality, not just completing the task?" },
-          { title: "Differentiation from existing practice", question: "Compared with usual care, what is the main practice change staff would need to remember when using this medical innovation?" }
+          { title: "Differentiation from existing practice", question: "When comparing this new protocol to our current ‘usual care,’ what are the most significant changes in practice that we must ensure the team understands and follows?" }
         ],
         quantitativeStrategies: [
-          { name: "Fidelity of Implementation Rating System (FIMP)", citation: "20", referenceUrl: "https://doi.org/10.1016/S0005-7894(05)80049-8", description: <>Use the FIMP as an observation-based measure to assess fidelity through two essential components: adherence and competence. It evaluates five specific dimensions of intervention delivery using a 9-point scale: Knowledge, Structure, Teaching, Clinical Process, and Overall Quality.</> }
+          { name: "Fidelity of Implementation Rating System (FIMP)", citation: "23", referenceUrl: "https://doi.org/10.1016/S0005-7894(05)80049-8", description: <>Use the FIMP as an observation-based measure to assess fidelity through two essential components: adherence and competence. It evaluates five specific dimensions of intervention delivery using a 9-point scale: Knowledge, Structure, Teaching, Clinical Process, and Overall Quality.</> }
         ],
         qualitativeStrategies: []
       },
@@ -327,8 +445,23 @@
         id: "penetration",
         title: "Penetration",
         type: "strategy",
-        definition: <>The integration of a practice within a service setting and its subsystems, intrinsically linked to context. <Sup>1,5</Sup></>,
-        interviewCitation: "5,8,21,22",
+        definition: <>The integration of a practice within a service setting and its subsystems, intrinsically linked to context. <Sup>1,8</Sup></>,
+        relevantTerms: ["Level of institutionalization", "Spread", "Service access","Reach","Ongoing engagement"],
+        outcomeExamples: [
+          {
+            citation: "5",
+            text: "In the Urine-Based HPV Screening Device, penetration would mean the extent to which the device becomes integrated into cervical cancer screening services across clinics, rather than remaining a prototype or isolated pilot."
+          },
+          {
+            citation: "6",
+            text: "In the External Cephalic Version Simulation Program, penetration would mean the extent to which ECV training and ECV practice spread across clinicians, care teams, and obstetric services at KBTH or similar hospitals."
+          },
+          {
+            citation: "7",
+            text: "In the ICAN Contraceptive Self-Injection Support Program, penetration would mean the extent to which ICAN components become embedded across HSA outreach clinics, supervisor routines, and community-based contraceptive support structures."
+          }
+        ],
+        interviewCitation: "8,11,24,25",
         interestHolders: [
           "Senior leadership (e.g., service line directors, chief medical officer, executive sponsors)",
           "Mid-level operational managers (e.g., clinical managers, program managers, quality improvement directors)",
@@ -338,15 +471,15 @@
           "Future users of the intervention (e.g., health care professionals, nurses, support staff)"
         ],
         topics: [
-          { title: "Contextual fit and compatibility", question: "Does this medical innovation feel like part of routine care in your clinic, or does it still feel like an add-on task?" },
-          { title: "Reach and niche saturation", question: "If this medical innovation works well in one service line, could it realistically reach every eligible patient across the hospital?" },
-          { title: "Implementation infrastructure and collective action", question: "Would your team need a formal data or IT workflow to make this medical innovation part of everyday operations?" },
-          { title: "Sustainment and institutionalization factors", question: "Could funding for this medical innovation move from a temporary project budget into a regular operating budget?" },
-          { title: "Policy alignment and interdepartmental coordination", question: "Would any current hospital policy make it harder to use this medical innovation across departments?" }
+          { title: "Contextual fit and compatibility", question: "How well does this healthcare innovation fit within the routines, priorities, and context of the setting where it would be used?" },
+          { title: "Integration across service subsystems", question: "How could this healthcare innovation become integrated across [the relevant service setting and subsystems], rather than remaining limited to one team, workflow, or patient group?" },
+          { title: "Implementation infrastructure and sustainment", question: "What infrastructure, roles, or coordination would be needed for this healthcare innovation to become a stable part of routine operations across [the service setting and its relevant subsystems]?" },
+          { title: "Organizational visibility and accountability", question: "What would make the use of this healthcare innovation visible enough for teams or leaders to identify gaps in integration across [the service setting]?" },
+          { title: "Policy alignment and interdepartmental coordination", question: "How might current policies, procedures, or approval processes support or hinder coordinated use of this healthcare innovation across [the relevant departments]?" }
         ],
         quantitativeStrategies: [
-          { name: "Normalization Process Theory Questionnaire (NoMAD)", citation: "21-23", referenceUrl: "https://doi.org/10.1186/s12874-018-0590-y", instrumentUrl: "http://www.normalizationprocess.org/", instrumentLabel: "NoMAD Instrument Link:", description: <>Use the 23-item, theory-based NoMAD survey to assess penetration from the perspective of staff involved in changing healthcare practices. It includes three general assessment items regarding current and future familiarity of the intervention and four theoretical constructs: coherence, cognitive participation, collective action, and reflexive monitoring.</> },
-          { name: "Pragmatic Context Assessment Tool (pCAT)", citation: "25", referenceUrl: "https://doi.org/10.1186/s43058-022-00380-5", instrumentUrl: "https://dissemination-implementation.org/wp-content/uploads/2025/05/pCAT-Tool.pdf", instrumentLabel: "pCAT Instrument Link:", description: <>Use the 14-item quantitative pCAT instrument to determine the level of penetration or the tangible fit of a medical intervention innovation within an organization’s existing subsystems. It is based on CFIR but translates technical constructs into everyday language familiar to clinicians.</> }
+          { name: "Normalization Process Theory Questionnaire (NoMAD)", citation: "24-26", referenceUrl: "https://doi.org/10.1186/s12874-018-0590-y", instrumentUrl: "http://www.normalizationprocess.org/", instrumentLabel: "NoMAD Instrument Link:", description: <>Use the 23-item, theory-based NoMAD survey to assess penetration from the perspective of staff involved in changing healthcare practices. It includes three general assessment items regarding current and future familiarity of the intervention and four theoretical constructs: coherence, cognitive participation, collective action, and reflexive monitoring.</> },
+          { name: "Pragmatic Context Assessment Tool (pCAT)", citation: "28", referenceUrl: "https://doi.org/10.1186/s43058-022-00380-5", instrumentUrl: "https://dissemination-implementation.org/wp-content/uploads/2025/05/pCAT-Tool.pdf", instrumentLabel: "pCAT Instrument Link:", description: <>Use the 14-item quantitative pCAT instrument to determine the level of penetration or the tangible fit of a medical intervention innovation within an organization’s existing subsystems. It is based on CFIR but translates technical constructs into everyday language familiar to clinicians.</> }
         ],
         qualitativeStrategies: [
           { name: "Normalization Process Theory Interview Guide", citation: "20,22,23", referenceUrl: "https://doi.org/10.1186/1748-5908-8-43", instrumentUrl: "https://dissemination-implementation.org/wp-content/uploads/2024/09/Normalization-Processing-Theory-Interview_Coding-Guide.pdf", instrumentLabel: "Normalization Process Theory Interview Guide Instrument Link:", description: <>Use the Normalization Process Theory Interview Guide with the NoMAD survey to evaluate how a medical innovation becomes embedded and integrated into intended contexts.</> }
@@ -356,8 +489,23 @@
         id: "sustainability",
         title: "Sustainability",
         type: "strategy",
-        definition: <>The extent to which a newly implemented treatment is maintained or institutionalized within ongoing, stable operations. <Sup>1,5</Sup></>,
-        interviewCitation: "26",
+        definition: <>The extent to which a newly implemented treatment is maintained or institutionalized within ongoing, stable operations. <Sup>1,8</Sup></>,
+        relevantTerms: ["Maintenance", "Continuation", "Durability", "Incorporation", "Integration", "Institutionalization", "Sustained use", "Routinization"],
+        outcomeExamples: [
+          {
+            citation: "5",
+            text: "In the Urine-Based HPV Screening Device, sustainability would mean whether clinics can continue using, cleaning, replacing, and adapting the device over time, including addressing durability and squat-toilet compatibility."
+          },
+          {
+            citation: "6",
+            text: "In the External Cephalic Version Simulation Program, sustainability would mean whether the training program, task trainer, procedural checklist, and skill practice become part of ongoing clinician education rather than a one-time study activity."
+          },
+          {
+            citation: "7",
+            text: "In the ICAN Contraceptive Self-Injection Support Program, sustainability would mean whether bicycles, lunch allowances, bi-weekly planning, peer support, and mnemonic-based self-injection support can be maintained within Malawi’s routine HSA outreach infrastructure after pilot or research support ends."
+          }
+        ],
+        interviewCitation: "29",
         interestHolders: [
           "Senior leadership (e.g., service line directors, chief medical officer, executive sponsors)",
           "Mid-level operational managers (e.g., clinical managers, program managers, quality improvement directors)",
@@ -367,25 +515,25 @@
           "Future users of the intervention (e.g., health care professionals, nurses, support staff)"
         ],
         topics: [
-          { title: "Strategic alignment", question: "Would this medical innovation still match your clinic’s long-term priorities two years from now?" },
-          { title: "Financial institutionalization", question: "Is there a realistic path for this medical innovation to be funded during future budget cycles?" },
-          { title: "Role formalization", question: "Could the work required for this medical innovation be written into an existing staff role description?" },
-          { title: "Infrastructure and data systems", question: "Would the data system needed for this medical innovation still be maintained after initial project funding ends?" },
-          { title: "Training and knowledge transfer", question: "If a new nurse joined the unit next month, is there a clear way to train them to use this medical innovation?" },
-          { title: "Adaptability", question: "Could this medical innovation be adjusted when clinic volume changes without losing its core purpose?" },
-          { title: "Maintenance and leadership continuity", question: "If the current project champion left, is there someone else who could keep this medical innovation moving?" },
-          { title: "External environmental pressure", question: "Would payer requirements, accreditation expectations, or reporting demands help keep this medical innovation in place over time?" }
+          { title: "Strategic alignment", question: "In what ways do you believe this practice has become essential to your clinic’s long-term vision and reputation for quality?" },
+          { title: "Financial institutionalization", question: "How could the financial resources needed for this healthcare innovation be protected or sustained during future budget cycles?" },
+          { title: "Role formalization", question: "How would responsibilities for maintaining this healthcare innovation be formally assigned within staff roles or job expectations?" },
+          { title: "Infrastructure and data systems", question: "What long-term systems would be needed to monitor, document, or communicate information related to this healthcare innovation?" },
+          { title: "Training and knowledge transfer", question: "What mechanisms exist to ensure that as new staff join the team, they receive the specialized training needed to maintain the intervention’s quality?" },
+          { title: "Adaptability", question: "What feedback or improvement processes would help this healthcare innovation remain maintainable during routine operations?" },
+          { title: "Maintenance and leadership continuity", question: "How would your organization ensure continued leadership support for this healthcare innovation if initial champions or project leaders change roles?" },
+          { title: "External environmental pressure", question: "How do external factors like accreditation requirements or payor satisfaction influence the commitment to funding this practice long-term?" }
         ],
         quantitativeStrategies: [
           {
-            name: "Program Evaluation Through the Use of Logic Models", citation: "27,28", referenceUrl: "https://doi.org/10.1300/J147v29n02_06", referenceLabel: "Reference",
+            name: "Program Evaluation Through the Use of Logic Models", citation: "30,31", referenceUrl: "https://doi.org/10.1300/J147v29n02_06", referenceLabel: "Reference",
             description: "Use a logic model to map the relationships among invested resources, activities, outputs, and short-, intermediate-, and long-term outcomes expected from a program. It provides a systematic and visual way to link program components to intended results, helping evaluators clarify how and why a program is expected to work. For sustainability, a logic model can help identify measurable indicators such as the continued availability of key resources, the maintenance of core activities, and the persistence of intended outcomes over time. This makes it a useful strategy for structuring sustainability evaluation and assessing whether an intervention is likely to be maintained in practice."
           }
 
         ],
         qualitativeStrategies: [
-          { name: "Practical, Robust Implementation and Sustainability Model (PRISM)", citation: "26", referenceUrl: "https://doi.org/10.1300/J147v29n02_06", description: <>Use the context-oriented PRISM as a comprehensive framework to organize interviews for predicting the sustainability of a medical intervention innovation. PRISM predicts and enhances institutionalization by assessing maintenance infrastructure, organizational and management expectations, adaptability and usability from the organizational perspective, and external environmental pressure from the outset of the project.</> },
-          { name: "Document Evidence Review", citation: "26", referenceUrl: "https://doi.org/10.1016/S1553-7250(08)34030-6", description: <>Review budget documents, policy drafts, standard operating procedures, workflow maps, and staffing plans to determine whether sustainability is supported by formal structures and operating routines rather than temporary project conditions.</> }
+          { name: "Practical, Robust Implementation and Sustainability Model (PRISM)", citation: "29", referenceUrl: "https://doi.org/10.1300/J147v29n02_06", description: <>Use the context-oriented PRISM as a comprehensive framework to organize interviews for predicting the sustainability of a medical intervention innovation. PRISM predicts and enhances institutionalization by assessing maintenance infrastructure, organizational and management expectations, adaptability and usability from the organizational perspective, and external environmental pressure from the outset of the project.</> },
+          { name: "Document Evidence Review", citation: "29", referenceUrl: "https://doi.org/10.1016/S1553-7250(08)34030-6", description: <>Review budget documents, policy drafts, standard operating procedures, workflow maps, and staffing plans to determine whether sustainability is supported by formal structures and operating routines rather than temporary project conditions.</> }
         ]
       }
     ];
@@ -396,9 +544,42 @@
       strategy: { card: "border-slate-200", header: "bg-slate-100 border-slate-200", accent: "text-slate-800", badge: "bg-slate-700 text-white", solid: "bg-slate-600", pill: "bg-slate-700 border-slate-700 text-white" }
     };
 
-    const typeLabel = (type) => type === "design" ? "Design Focused" : type === "transitionary" ? "Transitionary" : "Strategy Focused";
-    const measureLabel = (type) => type === "design" ? "Design Focused" : type === "transitionary" ? "Transitionary" : "Strategy Focused";
+    const typeLabel = (type) => type === "design" ? "Directly measurable" : type === "transitionary" ? "Transitionary" : "Anticipatory";
+    const measureLabel = (type) => type === "design" ? "Directly measurable" : type === "transitionary" ? "Transitionary" : "Anticipatory";
+    const outcomeUseBubbleClass = (type) =>
+      `px-2 py-0.5 text-[10px] rounded uppercase font-bold tracking-wider ${
+        type === "design"
+          ? "bg-emerald-200 text-emerald-800"
+          : type === "transitionary"
+            ? "bg-purple-200 text-purple-800"
+            : "bg-slate-700 text-white"
+      }`;
+
     const getStakeholderBaseLabel = (label) => label.split(" (")[0].trim();
+
+    const hasFutureInterestGroups = (outcomes = []) =>
+      outcomes.some((outcome) =>
+        outcome.interestHolders &&
+        outcome.interestHolders.some((interestHolder) => {
+          const baseLabel = getStakeholderBaseLabel(interestHolder).toLowerCase();
+          return (
+            baseLabel.includes("future users") ||
+            baseLabel.includes("future beneficiaries") ||
+            baseLabel.includes("future beneficiaries/recipients")
+          );
+        })
+      );
+
+    const InterestHolderGlossary = ({ className = "" }) => (
+      <div className={`rounded-xl border border-amber-200 bg-amber-50 p-3 text-xs text-amber-900 leading-relaxed ${className}`}>
+        <p className="font-bold uppercase tracking-wide text-amber-700 mb-1">
+          Glossary: users vs. beneficiaries
+        </p>
+        <p>
+          <span className="font-semibold">Future users</span> directly interact with, operate, deliver, or use the innovation in practice. <span className="font-semibold">Future beneficiaries/recipients</span> are expected to receive or benefit from the innovation. These groups may overlap, as in the Urine-Based HPV Screening Device, where patients may both collect the sample and benefit from expanded screening access. They may also differ, as in the ECV Simulation Program, where clinicians are the direct users of the training while pregnant patients are downstream beneficiaries of improved ECV care.
+        </p>
+      </div>
+    );
 
     const TopicAccordion = ({ topic }) => {
       const [open, setOpen] = useState(true);
@@ -453,7 +634,7 @@
             {item.name === "Individual-Level Technology Acceptance Model (TAM)" && (
               <div className="mt-3 rounded-xl border border-gray-200 bg-white p-2">
                 <img src="Strategy_Visuals/Technology_Acceptance_Model.png" alt="TAM Flowchart" className="w-full h-auto rounded-lg" />
-                <p className="text-center text-[10px] text-gray-500 mt-1">The Technology Acceptance Model <Sup>7</Sup></p>
+                <p className="text-center text-[10px] text-gray-500 mt-1">The Technology Acceptance Model <Sup>11</Sup></p>
               </div>
             )}
             {item.name === "Stages of Implementation Completion (SIC) and Cost of Implementing New Strategies (COINS)" && (
@@ -465,7 +646,7 @@
             {item.name === "Normalization Process Theory Questionnaire (NoMAD)" && (
               <div className="mt-3 rounded-xl border border-gray-200 bg-white p-2">
                 <img src="Strategy_Visuals/The Conceptual Model of Normalization Process Theory (NPT)_4 constructs situated in a social and organizational context.png" alt="The Conceptual Model of Normalization Process Theory (NPT)" className="w-full h-auto rounded-lg" />
-                <p className="text-center text-[10px] text-gray-500 mt-1">The Conceptual Model of Normalization Process Theory (NPT): 4 constructs situated in a social and organizational context <Sup>23</Sup></p>
+                <p className="text-center text-[10px] text-gray-500 mt-1">The Conceptual Model of Normalization Process Theory (NPT): 4 constructs situated in a social and organizational context <Sup>26</Sup></p>
               </div>
             )}
             {item.name === "Pragmatic Context Assessment Tool (pCAT)" && (
@@ -477,7 +658,7 @@
             {item.name === "Practical, Robust Implementation and Sustainability Model (PRISM)" && (
               <div className="mt-3 rounded-xl border border-gray-200 bg-white p-2">
                 <img src="Strategy_Visuals/The Practical, Robust Implementation and Sustainability Model_PRISM_.png" alt="The Practical, Robust Implementation and Sustainability Model (PRISM)" className="w-full h-auto rounded-lg" />
-                <p className="text-center text-[10px] text-gray-500 mt-1">The Practical, Robust Implementation and Sustainability Model (PRISM)  <Sup>24</Sup></p>
+                <p className="text-center text-[10px] text-gray-500 mt-1">The Practical, Robust Implementation and Sustainability Model (PRISM)  <Sup>29</Sup></p>
               </div>
             )}
             <div className="mt-3 space-y-2">
@@ -555,17 +736,114 @@
       <div className="mt-6 mb-2 print:hidden">
         <div className="rounded-xl border border-indigo-100 bg-indigo-50 px-4 py-3">
           <p className="text-sm text-indigo-800 text-center">
-            All references are available at the end of the Complete Framework tab.
+            All references are available at the end of the Complete Guide tab.
           </p>
         </div>
       </div>
     );
 
+    const RelevantTermsBox = ({ terms, className = "mt-3" }) => {
+      if (!terms || terms.length === 0) return null;
+
+      return (
+        <div className={`${className} text-xs text-gray-600 leading-relaxed`}>
+          <span className="font-bold uppercase tracking-wide text-gray-500">
+            Relevant terms:
+          </span>{" "}
+          {terms.join("; ")}
+        </div>
+      );
+    };
+
+    const OutcomeExamplesBox = ({ examples, className = "mt-4" }) => {
+      if (!examples || examples.length === 0) return null;
+
+      return (
+        <div className={`${className} rounded-xl border border-gray-200 bg-gray-50 p-3`}>
+          <p className="text-[11px] font-bold uppercase tracking-wide text-gray-600 mb-2">
+            Illustrated through the case examples
+          </p>
+          <ul className="list-disc pl-5 space-y-1 text-xs text-gray-700 leading-relaxed">
+            {examples.map((example, idx) => {
+              const m = example.text.match(/^In the ([^,]+),\s*(.*)$/);
+              return (
+                <li key={idx}>
+                  {m ? (<><strong>{m[1]}</strong>, {m[2]}</>) : example.text}
+                  <Sup>{example.citation}</Sup>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+      );
+    };
+
+    const CaseExampleCard = ({ example }) => {
+      const [open, setOpen] = useState(true);
+      return (
+        <div className="rounded-xl border border-gray-200 bg-gray-50 overflow-hidden">
+          <button onClick={() => setOpen(!open)} aria-expanded={open} className="w-full flex items-center justify-between p-3 text-left">
+            <div>
+              <h4 className="font-bold text-sm text-gray-900">
+                {example.title}<Sup>{example.citation}</Sup>
+              </h4>
+              <p className="mt-1 text-xs italic text-gray-500">
+                {example.expertiseArea}
+              </p>
+            </div>
+            <span className="inline-flex items-center gap-1 rounded-full border border-white/70 bg-white px-2 py-1 text-[11px] font-semibold text-gray-700 shrink-0">
+              {open ? "Collapse" : "Expand"}
+              <Icon name={open ? "chevron-up" : "chevron-down"} size={14} className="text-gray-500" />
+            </span>
+          </button>
+          {open && (
+            <div className="p-3 text-xs text-gray-700 leading-relaxed">
+              {example.description}
+            </div>
+          )}
+        </div>
+      );
+    };
+
+    const CaseExamplesSection = () => (
+      <section className="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
+        <div className="bg-gray-50 border-b border-gray-200 px-4 py-3">
+          <h3 className="font-bold text-lg text-gray-900">Healthcare Case Examples</h3>
+          <p className="text-sm text-gray-600 mt-1">
+            These examples illustrate how implementation outcomes can be considered during mid-design.<Sup>5–7</Sup>
+          </p>
+        </div>
+
+        <div className="p-4 flex flex-col gap-3">
+          {CASE_EXAMPLES.map((example) => (
+            <CaseExampleCard key={example.id} example={example} />
+          ))}
+        </div>
+      </section>
+    );
+
+    const InterestHoldersIntro = ({ boxed = true }) => {
+      const content = (
+        <p>
+          <span className="font-semibold text-gray-900">Interest-holders</span> are the people or groups whose perspectives, experiences, or responsibilities are important for understanding those implementation outcomes. They may include future users, patients, implementers, decision-makers, or other groups who would interact with, support, approve, or be affected by the innovation.
+        </p>
+      );
+
+      if (!boxed) return <div>{content}</div>;
+
+      return (
+        <div className="rounded-xl border border-gray-200 bg-gray-50 p-4 text-sm text-gray-700 leading-relaxed">
+          {content}
+        </div>
+      );
+    };
+    
+    
     const EvaluationStrategiesIntro = ({ boxed = true }) => {
       const content = (
         <>
           <p>
-            <span className="font-semibold text-gray-900">Evaluation strategies</span> should usually use mixed methods. Qualitative strategies explain context, experience, and how or why implementation may work. Quantitative strategies measure patterns, extent, and variation.
+            <span className="font-semibold text-gray-900">Evaluation strategies</span> should usually include mixed methods. Qualitative strategies explain context, experience, and how or why implementation may work. Quantitative strategies measure patterns, extent, and variation.
           </p>
           <div className="grid md:grid-cols-3 gap-2 mt-2 text-[12px]">
             <div className="rounded-lg border border-gray-200 bg-white p-2"><strong>Structure:</strong> Collect data sequentially or simultaneously, and decide whether qualitative, quantitative, or both methods should have priority.</div>
@@ -581,40 +859,62 @@
       return <div className="rounded-xl border border-gray-200 bg-gray-50 p-4 text-sm text-gray-700 leading-relaxed">{content}</div>;
     };
 
+    const ImplementationOutcomesIntro = ({ boxed = true }) => {
+      const content = (
+        <p>
+          <span className="font-semibold text-gray-900">Implementation outcomes</span> are “defined as the effects of deliberate and purposive actions to implement new treatments, practices, and services.” They can be used to identify design risks and improvement opportunities before implementation.<Sup>1</Sup> 
+        </p>
+      );
+
+      if (!boxed) return <div>{content}</div>;
+
+      return (
+        <div className="rounded-xl border border-gray-200 bg-gray-50 p-4 text-sm text-gray-700 leading-relaxed">
+          {content}
+        </div>
+      );
+    };
+
+    const OutcomeUseCategoriesIntro = () => (
+      <div className="grid md:grid-cols-3 gap-6 text-sm">
+        <div className="p-3 bg-emerald-50 rounded-lg border border-emerald-100">
+          <h3 className="font-bold text-emerald-800 flex items-center gap-1.5 mb-1">
+            <div className="w-2 h-2 rounded-full bg-emerald-500" /> Directly measurable
+          </h3>
+          <p className="text-emerald-700 leading-relaxed">
+            Outcomes that can be directly measurable in mid-design evaluation.
+          </p>
+        </div>
+        <div className="p-3 bg-purple-50 rounded-lg border border-purple-100">
+          <h3 className="font-bold text-purple-800 flex items-center gap-1.5 mb-1">
+            <div className="w-2 h-2 rounded-full bg-purple-500" /> Transitionary
+          </h3>
+          <p className="text-purple-700 leading-relaxed">
+            Outcomes that can be partially assessed during mid-design but require later implementation data to confirm actual performance to bridge design and deployment.
+          </p>
+        </div>
+        <div className="p-3 bg-slate-100 rounded-lg border border-slate-200">
+          <h3 className="font-bold text-slate-800 flex items-center gap-1.5 mb-1">
+            <div className="w-2 h-2 rounded-full bg-slate-500" /> Anticipatory
+          </h3>
+          <p className="text-slate-700 leading-relaxed">
+            Outcomes related to how implementation is carried out and maintained. These outcomes may not be directly measured yet, but can be used as exploratory considerations during mid-design to help teams identify future implementation risks early enough to revise the design.
+          </p>
+        </div>
+      </div>
+    );
+
     const FrameworkInstructions = () => (
       <>
         <h2 className="text-gray-900 font-bold flex items-center gap-2 mb-4">
-          <Icon name="info" size={18} className="text-blue-600" /> Framework Instructions
+            <Icon name="info" size={18} className="text-blue-600" /> Guide Instructions
         </h2>
-        <p className="text-sm text-gray-600 mb-4 leading-relaxed">
-          This Mid-Design Implementation Evaluation Framework is a structured decision-support tool developed to assess key implementation outcomes of medical innovations before full-scale implementation.
-        </p>
-        <p className="text-sm text-gray-600 mb-4 leading-relaxed italic">
-          To navigate the framework, select whichever implementation outcomes you are most interested in exploring. For reviewers who would like to examine the framework content more comprehensively, we suggest selecting all eight implementation outcomes to view the full set of framework content.
-        </p>
-        <div className="rounded-xl border border-gray-200 bg-gray-50 p-4 mb-4 text-sm text-gray-700 leading-relaxed">
+
+        <div className="rounded-xl border border-gray-200 bg-gray-50 p-4 text-sm text-gray-700 leading-relaxed">
           <div className="space-y-4">
-            <p>
-              <span className="font-semibold text-gray-900">Implementation outcomes</span> are “defined as the effects of deliberate and purposive actions to implement new treatments, practices, and services.” These outcomes matter because they serve as indicators of implementation success, provide early signals of how the implementation process is unfolding, and act as necessary conditions for later desired impacts to occur.<Sup>1</Sup>
-            </p>
-            <p>
-              <span className="font-semibold text-gray-900">Interest-holders</span> are the people or groups whose perspectives, experiences, or responsibilities are important for understanding those implementation outcomes. They may include future users, patients, implementers, decision-makers, or other groups who would interact with, support, approve, or be affected by the innovation.
-            </p>
+            <ImplementationOutcomesIntro boxed={false} />
+            <InterestHoldersIntro boxed={false} />
             <EvaluationStrategiesIntro boxed={false} />
-          </div>
-        </div>
-        <div className="grid md:grid-cols-3 gap-6 text-sm">
-          <div className="p-3 bg-emerald-50 rounded-lg border border-emerald-100">
-            <h3 className="font-bold text-emerald-800 flex items-center gap-1.5 mb-1"><div className="w-2 h-2 rounded-full bg-emerald-500" /> Design-Focused</h3>
-            <p className="text-emerald-700 leading-relaxed">Outcomes related to innovation design. These are <strong>directly measurable</strong> in mid-design evaluation.</p>
-          </div>
-          <div className="p-3 bg-purple-50 rounded-lg border border-purple-100">
-            <h3 className="font-bold text-purple-800 flex items-center gap-1.5 mb-1"><div className="w-2 h-2 rounded-full bg-purple-500" /> Transitionary</h3>
-            <p className="text-purple-700 leading-relaxed">Outcomes that bridge design and deployment by capturing readiness and early uptake conditions.</p>
-          </div>
-          <div className="p-3 bg-slate-100 rounded-lg border border-slate-200">
-            <h3 className="font-bold text-slate-800 flex items-center gap-1.5 mb-1"><div className="w-2 h-2 rounded-full bg-slate-500" /> Strategy-Focused</h3>
-            <p className="text-slate-700 leading-relaxed">Outcomes related to how implementation is carried out and maintained. These can be used as exploratory considerations during mid-design.</p>
           </div>
         </div>
       </>
@@ -636,7 +936,7 @@
 
     const App = () => {
       const [selectedOutcomes, setSelectedOutcomes] = useState([]);
-      const [view, setView] = useState("selection");
+      const [view, setView] = useState("instructions");
       const [stakeholderViewMode, setStakeholderViewMode] = useState("byOutcome");
       const toggleOutcome = (id) => setSelectedOutcomes((prev) => prev.includes(id) ? prev.filter((i) => i !== id) : [...prev, id]);
       const getSelectedData = useMemo(() => FRAMEWORK_DATA.filter((o) => selectedOutcomes.includes(o.id)), [selectedOutcomes]);
@@ -657,18 +957,41 @@
         if (selectedOutcomes.length === 0) setStakeholderViewMode("byOutcome");
       }, [selectedOutcomes]);
 
-      const SelectionView = () => (
-        <div className="space-y-4 animate-in">
-          <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm mb-6">
+      const FrameworkInstructionsView = () => (
+        <div className="space-y-6 animate-in">
+          <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
             <FrameworkInstructions />
           </div>
+
+          <ReferenceReminder />
+        </div>
+      );
+
+      const SelectionView = () => (
+        <div className="space-y-6 animate-in">
+          <div className="space-y-3">
+            <div>
+              <h2 className="text-2xl font-bold">Implementation Outcomes</h2>
+              <p className="text-sm text-gray-500">
+                Select the implementation outcomes you are most interested in exploring.
+              </p>
+            </div>
+
+            <ImplementationOutcomesIntro />
+            <p className="text-sm text-gray-700 leading-relaxed">
+              Because implementation is a staged process, this guide categorizes outcomes by how they can be used during mid-design. The outcomes are not all intended to be measured directly at mid-design; some are used to surface implementation risks that can still be designed for.
+            </p>
+            <OutcomeUseCategoriesIntro />
+          </div>
+
+          <CaseExamplesSection />
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {FRAMEWORK_DATA.map((outcome) => (
               <button
                 key={outcome.id}
                 onClick={() => toggleOutcome(outcome.id)}
-                className={`p-4 rounded-xl border-2 text-left transition-all relative group ${selectedOutcomes.includes(outcome.id)
+                className={`p-4 rounded-xl border-2 text-left transition-all relative group flex flex-col items-start ${selectedOutcomes.includes(outcome.id)
                   ? outcome.type === "design"
                     ? "border-emerald-500 bg-emerald-50 ring-2 ring-emerald-100"
                     : outcome.type === "transitionary"
@@ -697,19 +1020,15 @@
                 <p className="text-sm text-gray-600 mt-1 leading-relaxed italic">
                   {outcome.definition}
                 </p>
-
                 <div className="flex items-center gap-2 mt-4">
-                  <span
-                    className={`px-2 py-0.5 text-[10px] rounded uppercase font-bold tracking-wider ${outcome.type === "design"
-                      ? "bg-emerald-200 text-emerald-800"
-                      : outcome.type === "transitionary"
-                        ? "bg-purple-200 text-purple-800"
-                        : "bg-slate-700 text-white"
-                      }`}
-                  >
+                  <span className={outcomeUseBubbleClass(outcome.type)}>
                     {measureLabel(outcome.type)}
                   </span>
                 </div>
+
+                <RelevantTermsBox terms={outcome.relevantTerms} />
+                <OutcomeExamplesBox examples={outcome.outcomeExamples} />           
+
               </button>
             ))}
           </div>
@@ -726,12 +1045,23 @@
               return (
                 <OutcomeSection key={outcome.id} tone={tone} title={outcome.title} subtitle={<span>{outcome.definition}</span>}>
                   <div>
+                    <div className="mb-3">
+                      <span className={outcomeUseBubbleClass(outcome.type)}>
+                        {measureLabel(outcome.type)}
+                      </span>
+                    </div>
+
+                    <RelevantTermsBox terms={outcome.relevantTerms} className="mb-3" />
+
                     <h4 className={`text-[10px] font-black uppercase tracking-widest mb-3 flex items-center gap-1 ${tone.accent}`}>
-                      <Icon name="users" size={12} /> Interest-Holders Required to Evaluate{outcome.id === "implementation_cost" ? <Sup>10</Sup> : null}
+                      <Icon name="users" size={12} /> Interest-Holders Recommended to Evaluate{outcome.id === "implementation_cost" ? <Sup>10</Sup> : null}
                     </h4>
                     <div className="divide-y divide-gray-100 grid grid-cols-1 md:grid-cols-2 border rounded-xl overflow-hidden">
                       {outcome.interestHolders.map((interestHolder, idx) => (
-                        <div key={idx} className="p-3 flex items-center gap-3 text-sm text-gray-700 bg-white"><div className={`w-1.5 h-1.5 rounded-full ${tone.solid}`} />{interestHolder}</div>
+                        <div key={idx} className="p-3 flex items-center gap-3 text-sm text-gray-700 bg-white">
+                          <div className={`w-1.5 h-1.5 rounded-full ${tone.solid}`} />
+                          {interestHolder}
+                        </div>
                       ))}
                     </div>
                   </div>
@@ -754,7 +1084,11 @@
                         <div className="flex items-center gap-2 mb-2"><div className={`w-2.5 h-2.5 rounded-full ${tone.solid}`} /><p className="font-semibold text-sm text-gray-900">{outcome.title}</p></div>
                         <p className="text-xs text-gray-600 leading-relaxed">{outcome.definition}</p>
                         <div className="mt-2 text-xs text-gray-600 leading-relaxed"><span className="font-semibold text-gray-800">Relevant role in this outcome:</span> {outcome.fullInterestHolderLabel}</div>
-                        <div className="mt-3"><span className={`px-2 py-0.5 text-[10px] rounded uppercase font-bold tracking-wider ${outcome.type === "design" ? "bg-emerald-200 text-emerald-800" : outcome.type === "transitionary" ? "bg-purple-200 text-purple-800" : "bg-slate-700 text-white"}`}>{measureLabel(outcome.type)}</span></div>
+                        <div className="mt-3">
+                          <span className={outcomeUseBubbleClass(outcome.type)}>
+                            {measureLabel(outcome.type)}
+                          </span>
+                        </div>
                       </div>
                     );
                   })}
@@ -766,7 +1100,19 @@
 
         return (
           <div className="space-y-6 animate-in">
-            <div><h2 className="text-2xl font-bold">Interest-Holders Required to Evaluate</h2><p className="text-sm text-gray-500"> Choose how to view interest-holder guidance: by implementation outcome, by interest-holder group, or both.</p></div>
+            <div className="space-y-3">
+              <div>
+                <h2 className="text-2xl font-bold">Interest-Holders Required to Evaluate</h2>
+                <p className="text-sm text-gray-500">
+                  Choose how to view interest-holder guidance: by implementation outcome, by interest-holder group, or both.
+                </p>
+              </div>
+              <InterestHoldersIntro />
+              {hasFutureInterestGroups(getSelectedData) && (
+                <InterestHolderGlossary />
+              )}
+            </div>
+
             <div className="bg-white rounded-xl border border-gray-200 p-3 shadow-sm">
               <div className="flex flex-wrap gap-2">
                 {[["byOutcome", "By implementation outcome"], ["byStakeholder", "By interest-holder group"], ["both", "Both"]].map(([value, label]) => (
@@ -786,8 +1132,16 @@
           {getSelectedData.map((outcome) => {
             const tone = colorStyles[outcome.type];
             return (
-              <OutcomeSection key={outcome.id} tone={tone} title={outcome.title} subtitle={<span>{outcome.definition}</span>}>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <OutcomeSection key={outcome.id} tone={tone} title={outcome.title} subtitle={<span>{outcome.definition}</span>}>
+                    <div className="mb-3">
+                      <span className={outcomeUseBubbleClass(outcome.type)}>
+                        {measureLabel(outcome.type)}
+                      </span>
+                    </div>
+
+                    <RelevantTermsBox terms={outcome.relevantTerms} className="mb-4" />
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="md:col-span-1">
                     <h4 className="text-[10px] font-black text-blue-700 uppercase tracking-widest mb-3 flex items-center gap-1"><Icon name="help-circle" size={12} /> Qualitative Evaluation Strategies</h4>
                     <div className="space-y-3">
@@ -821,7 +1175,7 @@
         <div className="space-y-8 animate-in">
           <div className="flex justify-between items-center print:hidden">
             <div>
-              <h2 className="text-2xl font-bold">The Complete Mid-Design Evaluation Framework</h2>
+              <h2 className="text-2xl font-bold">The Complete Mid-Design Evaluation Guide</h2>
               <p className="text-sm text-gray-500">
                 Integrated view of selected implementation outcomes, interest-holders, and evaluation strategies for medical innovations.
               </p>
@@ -838,14 +1192,26 @@
             <FrameworkInstructions />
           </div>
 
+          {hasFutureInterestGroups(getSelectedData) && (
+            <InterestHolderGlossary />
+          )}
+
           {getSelectedData.map((outcome) => {
             const tone = colorStyles[outcome.type];
             return (
               <OutcomeSection key={outcome.id} tone={tone} title={outcome.title} subtitle={<span>{outcome.definition}</span>}>
+                <div className="mb-3">
+                  <span className={outcomeUseBubbleClass(outcome.type)}>
+                    {measureLabel(outcome.type)}
+                  </span>
+                </div>
+
+                <RelevantTermsBox terms={outcome.relevantTerms} className="mb-4" />
+
                 <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
                   <div className="md:col-span-3">
                     <h4 className={`text-[10px] font-black uppercase tracking-widest mb-3 flex items-center gap-1 ${tone.accent}`}>
-                      <Icon name="users" size={12} /> Interest-Holders Required to Evaluate{outcome.id === "implementation_cost" ? <Sup>10</Sup> : null}
+                      <Icon name="users" size={12} /> Interest-Holders Recommended to Evaluate{outcome.id === "implementation_cost" ? <Sup>10</Sup> : null}
                     </h4>
                     <div className="space-y-2">
                       {outcome.interestHolders.map((s, idx) => (
@@ -919,18 +1285,20 @@
 
 
       const tabs = [
+        { id: "instructions", label: "Guide Instructions", icon: "info" },
         { id: "selection", label: "Implementation Outcomes", icon: "layout-grid" },
         { id: "stakeholders", label: "Interest-Holders", icon: "users" },
         { id: "strategies", label: "Evaluation Strategies", icon: "clipboard-list" },
-        { id: "complete", label: "Complete Framework", icon: "book-open" },
+        { id: "complete", label: "Complete Guide", icon: "book-open" },
       ];
 
       const renderCurrentView = () => {
+        if (view === "instructions") return <FrameworkInstructionsView />;
         if (view === "selection") return <SelectionView />;
         if (view === "stakeholders") return selectedOutcomes.length > 0 ? <StakeholderView /> : <SelectionView />;
         if (view === "strategies") return selectedOutcomes.length > 0 ? <EvaluationStrategiesView /> : <SelectionView />;
         if (view === "complete") return selectedOutcomes.length > 0 ? <CompleteFrameworkView /> : <SelectionView />;
-        return <SelectionView />;
+        return <FrameworkInstructionsView />;
       };
 
       return (
@@ -943,10 +1311,19 @@
                     @Chuwen Zheng
                   </p>
                   <h1 className="text-3xl md:text-4xl font-black tracking-tight text-gray-900">
-                    Mid-Design Evaluation Framework
+                    Mid-Design Evaluation Guide
                   </h1>
-                  <p className="text-sm md:text-base text-gray-600 mt-2 max-w-3xl">
-                    Select implementation outcomes, then review relevant interest-holders, qualitative and quantitative evaluation strategies.
+                  <p className="text-sm md:text-base text-gray-600 mt-2 max-w-full">
+                    This Mid-Design Implementation Evaluation Guide is a structured decision-support tool developed to assess key implementation outcomes of medical innovations during the mid-design phase before full-scale implementation.
+                  </p>
+                  <div className="mt-3 rounded-lg border-l-4 border-indigo-600 bg-indigo-50/60 p-3 max-w-full">
+                    <p className="text-xs font-semibold uppercase tracking-wider text-indigo-700">Mid-design phase</p>
+                    <p className="text-sm text-indigo-900 mt-1">
+                      Mid-design refers to the phase of health innovation development after a promising concept or solution direction has been selected, but before the design is finalized for full implementation, summative validation, or scale-up.
+                    </p>
+                  </div>
+                  <p className="text-sm italic text-gray-600 mt-2 max-w-3xl">
+                    To navigate the guide, select whichever implementation outcomes you are most interested in exploring. For reviewers who would like to examine the guide content more comprehensively, we suggest selecting all eight implementation outcomes to view the full set of guide content.
                   </p>
                 </div>
                 <div className="bg-white border border-gray-200 rounded-xl px-4 py-3 shadow-sm">
@@ -963,8 +1340,8 @@
             <div className="sticky top-0 z-20 bg-gray-50/95 backdrop-blur border border-gray-200 rounded-2xl p-2 shadow-sm mb-6 print:hidden">
               <div className="flex flex-wrap gap-2">
                 {tabs.map((tab) => {
-                  const disabled = tab.id !== "selection" && selectedOutcomes.length === 0;
-                  const active = view === tab.id;
+                       const disabled = !["instructions", "selection"].includes(tab.id) && selectedOutcomes.length === 0;
+                       const active = view === tab.id;
                   return (
                     <button
                       key={tab.id}
@@ -1030,8 +1407,8 @@
                       setView(tabs[currentIndex - 1].id);
                     }
                   }}
-                  disabled={view === "selection"}
-                  className={`px-4 py-2.5 rounded-xl text-sm font-bold flex items-center gap-2 transition ${view === "selection"
+                  disabled={view === "instructions"}
+                  className={`px-4 py-2.5 rounded-xl text-sm font-bold flex items-center gap-2 transition ${view === "instructions"
                     ? "bg-gray-100 text-gray-400 cursor-not-allowed"
                     : "bg-white border border-gray-200 text-gray-700 hover:bg-gray-50"
                     }`}
@@ -1039,7 +1416,7 @@
                   <Icon
                     name="arrow-left"
                     size={16}
-                    className={view === "selection" ? "text-gray-400" : "text-gray-500"}
+                    className={view === "instructions" ? "text-gray-400" : "text-gray-500"}
                   />
                   Back
                 </button>
@@ -1052,8 +1429,8 @@
                       setView(tabs[currentIndex + 1].id);
                     }
                   }}
-                  disabled={view === "complete" || (selectedOutcomes.length === 0 && view === "selection")}
-                  className={`px-4 py-2.5 rounded-xl text-sm font-bold flex items-center gap-2 transition ${view === "complete" || (selectedOutcomes.length === 0 && view === "selection")
+                  disabled={view === "complete" || (selectedOutcomes.length === 0 && !["instructions", "selection"].includes(view))}
+                  className={`px-4 py-2.5 rounded-xl text-sm font-bold flex items-center gap-2 transition ${view === "complete" || (selectedOutcomes.length === 0 && !["instructions", "selection"].includes(view))
                     ? "bg-gray-100 text-gray-400 cursor-not-allowed"
                     : "bg-indigo-600 text-white hover:bg-indigo-700 shadow-sm"
                     }`}
@@ -1063,7 +1440,7 @@
                     name="arrow-right"
                     size={16}
                     className={
-                      view === "complete" || (selectedOutcomes.length === 0 && view === "selection")
+                      view === "complete" || (selectedOutcomes.length === 0 && !["instructions", "selection"].includes(view))
                         ? "text-gray-400"
                         : "text-white"
                     }
