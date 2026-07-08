@@ -1468,6 +1468,22 @@ const Icon = ({ name, size = 18, className = "" }) => {
       </section>
     );
 
+    const GuidingFrameworksIntro = ({ boxed = true }) => {
+      const content = (
+        <p>
+          <span className="font-semibold text-gray-900">Guiding frameworks</span> provide cross-cutting conceptual guidance for considering implementation outcomes during mid-design. Some frameworks are relevant to more than one outcome and can help users structure inquiry, identify contextual considerations, and interpret early implementation-related signals.
+        </p>
+      );
+
+      if (!boxed) return <div>{content}</div>;
+
+      return (
+        <div className="rounded-xl border border-gray-200 bg-gray-50 p-4 text-sm text-gray-700 leading-relaxed">
+          {content}
+        </div>
+      );
+    };    
+
     const InterestHoldersIntro = ({ boxed = true }) => {
       const content = (
         <p>
@@ -1536,7 +1552,7 @@ const Icon = ({ name, size = 18, className = "" }) => {
             <div className="w-2 h-2 rounded-full bg-purple-500" /> Transitionary
           </h3>
           <p className="text-purple-700 leading-relaxed">
-            Outcomes that can be partially assessed during mid-design but require later implementation data to confirm actual performance to bridge design and deployment.
+            Outcomes that can be partially explored or measured during mid-design but require later implementation data to confirm actual performance to bridge design and deployment.
           </p>
         </div>
         <div className="p-3 bg-slate-100 rounded-lg border border-slate-200">
@@ -1544,7 +1560,7 @@ const Icon = ({ name, size = 18, className = "" }) => {
             <div className="w-2 h-2 rounded-full bg-slate-500" /> Anticipatory
           </h3>
           <p className="text-slate-700 leading-relaxed">
-            Outcomes related to how implementation is carried out and maintained. These outcomes may not be directly measured yet, but can be used as exploratory considerations during mid-design to help teams identify future implementation risks early enough to revise the design.
+            Outcomes related to how implementation is carried out and maintained. These outcomes may not be fully evaluated during mid-design but can be considered proactively to identify future implementation risks and guide design refinement.
           </p>
         </div>
       </div>
@@ -1564,7 +1580,7 @@ const Icon = ({ name, size = 18, className = "" }) => {
           Scope note
         </p>
         <p>
-          This guide is designed for a broad range of healthcare innovations, including but not limited to medical devices, digital tools, clinical workflows, educational interventions, and public health programs. When applying the guide, users should interpret each implementation outcome in relation to the innovation’s intended use, interest holders, risk level, regulatory context, and setting of implementation. For medical devices, this may include considering the device’s indications for use, FDA classification, intended user group, and whether the device is intended to support patients, healthcare workers, or both.
+          This guide is designed for a broad range of healthcare innovations, including but not limited to medical devices, digital tools, clinical workflows, educational interventions, and public health programs. The guide does not assume that all implementation outcomes can be fully measured during mid-design. Instead, it helps teams understand how different outcomes can be considered, explored, or evaluated depending on the innovation, setting, available evidence, and stage of development.
         </p>
       </div>
     );
@@ -1579,6 +1595,7 @@ const Icon = ({ name, size = 18, className = "" }) => {
           <div className="space-y-4">
             <GuideOverviewIntro />
             <ImplementationOutcomesIntro boxed={false} />
+            <GuidingFrameworksIntro boxed={false} />
             <InterestHoldersIntro boxed={false} />
             <EvaluationStrategiesIntro boxed={false} />
             <ScopeNote />
@@ -2508,7 +2525,7 @@ const Icon = ({ name, size = 18, className = "" }) => {
                     Mid-Design Evaluation Guide
                   </h1>
                   <p className="text-sm md:text-base text-gray-600 mt-2 max-w-full">
-                    This Mid-Design Implementation Evaluation Guide is a structured decision-support tool developed for designers and implementers to assess key implementation outcomes of medical innovations during the mid-design phase before full-scale implementation.
+                    This Mid-Design Evaluation Guide is a structured decision-support tool developed for designers and implementers understand how to consider and evaluate implementation outcomes during mid-design.
                   </p>
                   <div className="mt-3 rounded-lg border-l-4 border-indigo-600 bg-indigo-50/60 p-3 max-w-full">
                     <p className="text-xs font-semibold uppercase tracking-wider text-indigo-700">Mid-design phase</p>
