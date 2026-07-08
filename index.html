@@ -1502,21 +1502,12 @@ const Icon = ({ name, size = 18, className = "" }) => {
     
     
     const EvaluationStrategiesIntro = ({ boxed = true }) => {
-      const content = (
-        <>
-          <p>
-            <span className="font-semibold text-gray-900">Evaluation strategies</span>  usually include mixed methods. Qualitative strategies explain context, experience, and how or why implementation may work. Quantitative strategies measure patterns, extent, and variation.
-          </p>
-          <div className="grid md:grid-cols-3 gap-2 mt-2 text-[12px]">
-            <div className="rounded-lg border border-gray-200 bg-white p-2"><strong>Structure:</strong> Collect data sequentially or simultaneously, and decide whether qualitative, quantitative, or both methods should have priority.</div>
-            <div className="rounded-lg border border-gray-200 bg-white p-2"><strong>Function:</strong> Use both qualitative and quantitative methods to triangulate, complement, explain, develop, or sample.</div>
-            <div className="rounded-lg border border-gray-200 bg-white p-2"><strong>Integration:</strong> Bring evidence together by merging, connecting, or embedding qualitative and quantitative data.</div>
-          </div>
-          <p className="mt-2 text-[12px] text-gray-600">
-            The goal is to use mixed methods to bridge interest-holder perspectives with implementation context.<Sup>2–4</Sup>
-          </p>
-        </>
+            const content = (
+        <p>
+          <span className="font-semibold text-gray-900">Evaluation strategies</span> may include qualitative, quantitative, or mixed-method approaches. Qualitative strategies can help explain context, experience, workflow fit, perceived barriers and facilitators, and why implementation may or may not work. Quantitative strategies can help measure patterns, extent, variation, and change across individuals, groups, or settings. When qualitative and quantitative evidence are integrated well, mixed methods can support more informed mid-design decisions.<Sup>2–4</Sup>
+        </p>
       );
+      
       if (!boxed) return <div className="mt-4">{content}</div>;
       return <div className="rounded-xl border border-gray-200 bg-gray-50 p-4 text-sm text-gray-700 leading-relaxed">{content}</div>;
     };
