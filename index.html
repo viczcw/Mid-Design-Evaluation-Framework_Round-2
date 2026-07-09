@@ -1410,24 +1410,15 @@ const Icon = ({ name, size = 18, className = "" }) => {
     };
 
     const FoundationalGuidingFrameworksSection = () => (
-      <section className="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
-        <div className="bg-gray-50 border-b border-gray-200 px-4 py-3">
-          <h3 className="font-bold text-lg text-gray-900">Foundational Guiding Frameworks</h3>
-          <p className="text-sm text-gray-600 mt-1">
-            These guiding frameworks are relevant to more than one implementation outcome and can help users structure mid-design evaluation planning across outcomes.
-          </p>
-        </div>
-
-        <div className="p-4 space-y-3">
-          {FOUNDATIONAL_GUIDING_FRAMEWORKS.map((framework, index) => (
-            <FoundationalFrameworkCard
-              key={framework.id}
-              framework={framework}
-              defaultOpen={index === 0}
-            />
-          ))}
-        </div>
-      </section>
+      <div className="space-y-3">
+        {FOUNDATIONAL_GUIDING_FRAMEWORKS.map((framework, index) => (
+          <FoundationalFrameworkCard
+            key={framework.id}
+            framework={framework}
+            defaultOpen={index === 0}
+          />
+        ))}
+      </div>
     );
 
     const CaseInterestHolderSummariesSection = () => (
@@ -1507,7 +1498,7 @@ const Icon = ({ name, size = 18, className = "" }) => {
           <span className="font-semibold text-gray-900">Evaluation strategies</span> may include qualitative, quantitative, or mixed-method approaches. Qualitative strategies can help explain context, experience, workflow fit, perceived barriers and facilitators, and why implementation may or may not work. Quantitative strategies can help measure patterns, extent, variation, and change across individuals, groups, or settings. When qualitative and quantitative evidence are integrated well, mixed methods can support more informed mid-design decisions.<Sup>2–4</Sup>
         </p>
       );
-      
+
       if (!boxed) return <div className="mt-4">{content}</div>;
       return <div className="rounded-xl border border-gray-200 bg-gray-50 p-4 text-sm text-gray-700 leading-relaxed">{content}</div>;
     };
