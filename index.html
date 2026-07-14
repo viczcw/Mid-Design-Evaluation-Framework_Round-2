@@ -378,7 +378,7 @@ const Icon = ({ name, size = 18, className = "" }) => {
           { name: "Implementation Strategy Usability Scale (ISUS)", citation: "21", referenceUrl: "https://doi.org/10.1186/s43058-021-00183-0", description: <>Use the Implementation Strategy Usability Scale when the design team has a draft or initial implementation strategy, such as training, consultation, technical assistance, workflow support, reminders, onboarding, or facilitation, and wants to evaluate whether that strategy is usable and well-matched to intended users and settings. In mid-design, ISUS can help identify whether the planned support for implementation is likely to fit real-world constraints before the innovation and implementation plan are finalized.</> }
         ],
         qualitativeStrategies: [
-          { name: "FField observation framework for pre-implementation of pre-patient-reported outcome measurement", citation: "22", referenceUrl: "https://doi.org/10.1186/s43058-026-00859-5", description: <>Conduct field observations using ethnographic methods to identify site-level differences in clinic layouts, staffing stability, and patient digital literacy that surveys or interviews alone may miss when evaluating organizational readiness and appropriateness for a new medical intervention innovation, particularly in low-resourced settings such as community cancer centers.</> }
+          { name: "Field observation framework for pre-implementation of pre-patient-reported outcome measurement", citation: "22", referenceUrl: "https://doi.org/10.1186/s43058-026-00859-5", description: <>Conduct field observations using ethnographic methods to identify site-level differences in clinic layouts, staffing stability, and patient digital literacy that surveys or interviews alone may miss when evaluating organizational readiness and appropriateness for a new medical intervention innovation, particularly in low-resourced settings such as community cancer centers.</> }
         ]
       },
       {
@@ -1274,6 +1274,79 @@ const Icon = ({ name, size = 18, className = "" }) => {
       );
     };
 
+    const OutcomeCaseIllustrationCard = ({ outcome }) => {
+      const [open, setOpen] = useState(false);
+      const tone = colorStyles[outcome.type];
+
+      return (
+        <div
+          className={`rounded-xl border ${tone.card} bg-white overflow-hidden avoid-break`}
+        >
+          <button
+            type="button"
+            onClick={() => setOpen(!open)}
+            aria-expanded={open}
+            className={`w-full px-4 py-3 text-left flex items-start justify-between gap-3 ${tone.header}`}
+          >
+            <div>
+              <div className="flex flex-wrap items-center gap-2">
+                <h4 className="font-bold text-base text-gray-900">
+                  {outcome.title}
+                </h4>
+
+                <span className={outcomeUseBubbleClass(outcome.type)}>
+                  {measureLabel(outcome.type)}
+                </span>
+              </div>
+
+              <p className="text-xs text-gray-600 mt-2">
+                Compare how this implementation outcome appears across the
+                three health care innovation cases.
+              </p>
+            </div>
+
+            <span className="inline-flex items-center gap-1 rounded-full border border-white/70 bg-white px-2 py-1 text-[11px] font-semibold text-gray-700 shrink-0">
+              {open ? "Collapse" : "Expand"}
+
+              <Icon
+                name={open ? "chevron-up" : "chevron-down"}
+                size={14}
+                className="text-gray-500"
+              />
+            </span>
+          </button>
+
+          {open && (
+            <div className="p-4 grid grid-cols-1 lg:grid-cols-3 gap-3">
+              {outcome.outcomeExamples.map((example, index) => {
+                const caseExample = CASE_EXAMPLES[index];
+
+                return (
+                  <div
+                    key={`${outcome.id}-${caseExample.id}`}
+                    className="rounded-xl border border-gray-200 bg-gray-50 p-4"
+                  >
+                    <h5 className="font-bold text-sm text-gray-900">
+                      {caseExample.title}
+                      <Sup>{example.citation}</Sup>
+                    </h5>
+
+                    <p className="text-xs italic text-gray-500 mt-1">
+                      {caseExample.expertiseArea}
+                    </p>
+
+                    <p className="text-xs text-gray-700 leading-relaxed mt-3">
+                      {example.text}
+                    </p>
+                  </div>
+                );
+              })}
+            </div>
+          )}
+        </div>
+      );
+    };
+    
     const OutcomeRelationshipNote = ({ note, className = "mt-3" }) => {
       if (!note) return null;
 
@@ -1447,13 +1520,40 @@ const Icon = ({ name, size = 18, className = "" }) => {
         <div className="bg-gray-50 border-b border-gray-200 px-4 py-3">
           <h3 className="font-bold text-lg text-gray-900">Healthcare Case Examples</h3>
           <p className="text-sm text-gray-600 mt-1">
-            These examples illustrate how implementation outcomes can be considered during mid-design.<Sup>6–10</Sup>
+            These summaries introduce the three health care innovation cases
+            used throughout the guide. Outcome-specific illustrations are
+            presented in the following section.
+            <Sup>6–10</Sup>
           </p>
         </div>
 
         <div className="p-4 flex flex-col gap-3">
           {CASE_EXAMPLES.map((example) => (
             <CaseExampleCard key={example.id} example={example} />
+          ))}
+        </div>
+      </section>
+    );
+
+    const OutcomeCaseIllustrationsSection = () => (
+      <section className="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
+        <div className="bg-gray-50 border-b border-gray-200 px-4 py-3">
+          <h3 className="font-bold text-lg text-gray-900">
+            Implementation Outcomes Illustrated Across the Case Examples
+          </h3>
+
+          <p className="text-sm text-gray-600 mt-1">
+            Expand an implementation outcome to compare how it appears across
+            the three health care innovation cases.
+          </p>
+        </div>
+
+        <div className="p-4 space-y-3">
+          {FRAMEWORK_DATA.map((outcome) => (
+            <OutcomeCaseIllustrationCard
+              key={outcome.id}
+              outcome={outcome}
+            />
           ))}
         </div>
       </section>
@@ -1766,25 +1866,24 @@ const Icon = ({ name, size = 18, className = "" }) => {
             <OutcomeUseCategoriesIntro />
           </div>
 
-          <CaseExamplesSection />
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 gap-4">
             {FRAMEWORK_DATA.map((outcome) => (
               <button
                 key={outcome.id}
+                type="button"
                 onClick={() => toggleOutcome(outcome.id)}
-                className={`p-4 rounded-xl border-2 text-left transition-all relative group flex flex-col items-start ${selectedOutcomes.includes(outcome.id)
-                  ? outcome.type === "design"
-                    ? "border-emerald-500 bg-emerald-50 ring-2 ring-emerald-100"
-                    : outcome.type === "transitionary"
-                      ? "border-purple-500 bg-purple-50 ring-2 ring-purple-100"
-                      : "border-slate-600 bg-slate-50 ring-2 ring-slate-100"
-                  : "border-gray-200 bg-white hover:border-gray-300 shadow-sm"
-                  }`}
+                className={`p-5 rounded-xl border-2 text-left transition-all relative group flex flex-col items-start ${
+                  selectedOutcomes.includes(outcome.id)
+                    ? outcome.type === "design"
+                      ? "border-emerald-500 bg-emerald-50 ring-2 ring-emerald-100"
+                      : outcome.type === "transitionary"
+                        ? "border-purple-500 bg-purple-50 ring-2 ring-purple-100"
+                        : "border-slate-600 bg-slate-50 ring-2 ring-slate-100"
+                    : "border-gray-200 bg-white hover:border-gray-300 shadow-sm"
+                }`}
               >
-                <div className="flex justify-between items-start gap-3">
-                  <h3 className="font-bold text-lg">{outcome.title}</h3>
-                  {selectedOutcomes.includes(outcome.id) && (
+                {selectedOutcomes.includes(outcome.id) && (
+                  <div className="absolute top-4 right-4">
                     <Icon
                       name="circle-check"
                       size={20}
@@ -1796,32 +1895,46 @@ const Icon = ({ name, size = 18, className = "" }) => {
                             : "text-slate-600"
                       }
                     />
-                  )}
-                </div>
+                  </div>
+                )}
 
-                <p className="text-sm text-gray-600 mt-1 leading-relaxed italic">
-                  {outcome.definition}
-                </p>
-                <div className="flex items-center gap-2 mt-4">
+                <div className="flex flex-wrap items-center gap-2 pr-8">
+                  <h3 className="font-bold text-lg text-gray-900">
+                    {outcome.title}
+                  </h3>
+
                   <span className={outcomeUseBubbleClass(outcome.type)}>
                     {measureLabel(outcome.type)}
                   </span>
                 </div>
 
-                <RelevantTermsBox terms={outcome.relatedTerms} />
-                <OutcomeRelationshipNote note={outcome.relationshipNote} />
-                <OutcomeExamplesBox examples={outcome.outcomeExamples} />           
+                <p className="text-sm text-gray-600 mt-3 leading-relaxed italic">
+                  {outcome.definition}
+                </p>
 
+                <RelevantTermsBox
+                  terms={outcome.relatedTerms}
+                  className="mt-4"
+                />
+
+                <OutcomeRelationshipNote
+                  note={outcome.relationshipNote}
+                  className="mt-4"
+                />
               </button>
             ))}
           </div>
+
+          <CaseExamplesSection />
+
+          <OutcomeCaseIllustrationsSection />
 
           <ReferenceReminder />
         </div>
       );
 
-      const FoundationalFrameworksView = () => (
-        <div className="space-y-6 animate-in">
+      const FoundationalFrameworksView = () =>(
+        <div className="space-y-6 animate-in"> 
           <div className="space-y-3">
             <div>
               <h2 className="text-2xl font-bold">Foundational Guiding Frameworks</h2>
@@ -1939,7 +2052,10 @@ const Icon = ({ name, size = 18, className = "" }) => {
       const EvaluationStrategiesView = () => (
         <div className="space-y-8 animate-in">
           <div className="space-y-3">
-            <h2 className="text-2xl font-bold">Evaluation Strategies</h2>
+            <h2 className="text-2xl font-bold">
+              Evaluation Strategies
+            </h2>
+
             <EvaluationStrategiesIntro />
           </div>
 
@@ -1947,36 +2063,89 @@ const Icon = ({ name, size = 18, className = "" }) => {
 
           {getSelectedData.map((outcome) => {
             const tone = colorStyles[outcome.type];
+
             return (
-                  <OutcomeSection key={outcome.id} tone={tone} title={outcome.title} subtitle={<span>{outcome.definition}</span>}>
-                    <div className="mb-3">
-                      <span className={outcomeUseBubbleClass(outcome.type)}>
-                        {measureLabel(outcome.type)}
-                      </span>
-                    </div>
+              <OutcomeSection
+                key={outcome.id}
+                tone={tone}
+                title={outcome.title}
+              >
+                <div className="mb-3">
+                  <span className={outcomeUseBubbleClass(outcome.type)}>
+                    {measureLabel(outcome.type)}
+                  </span>
+                </div>
 
-                    <RelevantTermsBox terms={outcome.relatedTerms} className="mb-4" />
-                    <OutcomeRelationshipNote note={outcome.relationshipNote} className="mb-4" />
-                    <OutcomeGuidanceBox outcomeId={outcome.id} />                 
-
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <OutcomeGuidanceBox
+                  outcomeId={outcome.id}
+                />
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="md:col-span-1">
-                    <h4 className="text-[10px] font-black text-blue-700 uppercase tracking-widest mb-3 flex items-center gap-1"><Icon name="help-circle" size={12} /> Qualitative Evaluation Strategies</h4>
+                    <h4 className="text-[10px] font-black text-blue-700 uppercase tracking-widest mb-3 flex items-center gap-1">
+                      <Icon
+                        name="help-circle"
+                        size={12}
+                      />
+
+                      Qualitative or Mixed-Method Evaluation Strategies
+                    </h4>
+
                     <div className="space-y-3">
                       <div className="rounded-xl border border-blue-100 bg-blue-50/30 p-3">
-                        <h5 className="text-[13px] font-bold text-blue-900 mb-2">Interview<Sup>{outcome.interviewCitation}</Sup></h5>
-                        <InterviewStrategyIntro outcomeTitle={outcome.title} />
-                        <div className="space-y-3">{outcome.topics.map((topic, i) => <TopicAccordion key={i} topic={topic} />)}</div>
+                        <h5 className="text-[13px] font-bold text-blue-900 mb-2">
+                          Interview
+                          <Sup>{outcome.interviewCitation}</Sup>
+                        </h5>
+
+                        <InterviewStrategyIntro
+                          outcomeTitle={outcome.title}
+                        />
+
+                        <div className="space-y-3">
+                          {outcome.topics.map((topic, index) => (
+                            <TopicAccordion
+                              key={index}
+                              topic={topic}
+                            />
+                          ))}
+                        </div>
                       </div>
-                      {outcome.qualitativeStrategies.length > 0 && outcome.qualitativeStrategies.map((item, i) => <StrategyAccordion key={i} item={item} color="indigo" />)}
+
+                      {outcome.qualitativeStrategies.length > 0 &&
+                        outcome.qualitativeStrategies.map((item, index) => (
+                          <StrategyAccordion
+                            key={index}
+                            item={item}
+                            color="indigo"
+                          />
+                        ))}
                     </div>
                   </div>
+
                   <div className="md:col-span-1 border-l border-gray-100 pl-0 md:pl-5">
-                    <h4 className="text-[10px] font-black text-purple-700 uppercase tracking-widest mb-3 flex items-center gap-1"><Icon name="clipboard-check" size={12} /> Quantitative Evaluation Strategies</h4>
+                    <h4 className="text-[10px] font-black text-purple-700 uppercase tracking-widest mb-3 flex items-center gap-1">
+                      <Icon
+                        name="clipboard-check"
+                        size={12}
+                      />
+
+                      Quantitative Evaluation Strategies
+                    </h4>
+
                     <div className="space-y-3">
-                      {outcome.quantitativeStrategies.map((s, i) => <StrategyAccordion key={i} item={s} color="purple" />)}
+                      {outcome.quantitativeStrategies.map((strategy, index) => (
+                        <StrategyAccordion
+                          key={index}
+                          item={strategy}
+                          color="purple"
+                        />
+                      ))}
+
                       {outcome.quantitativeStrategies.length === 0 && (
-                        <div className="rounded-xl border border-dashed border-gray-200 p-4 text-sm text-gray-500 bg-gray-50">No quantitative strategies listed for this implementation outcome.</div>
+                        <div className="rounded-xl border border-dashed border-gray-200 p-4 text-sm text-gray-500 bg-gray-50">
+                          No quantitative strategies listed for this
+                          implementation outcome.
+                        </div>
                       )}
                     </div>
                   </div>
@@ -1984,6 +2153,7 @@ const Icon = ({ name, size = 18, className = "" }) => {
               </OutcomeSection>
             );
           })}
+
           <ReferenceReminder />
         </div>
       );
@@ -2047,7 +2217,7 @@ const Icon = ({ name, size = 18, className = "" }) => {
 
                   <div className="md:col-span-5 border-l border-gray-100 pl-0 md:pl-5">
                     <h4 className="text-[10px] font-black text-blue-700 uppercase tracking-widest mb-3 flex items-center gap-1">
-                      <Icon name="help-circle" size={12} /> Qualitative Evaluation Strategies
+                      <Icon name="help-circle" size={12} /> Qualitative or Mixed-Method Evaluation Strategies
                     </h4>
                     <div className="space-y-3">
                       <div className="rounded-xl border border-blue-100 bg-blue-50/30 p-3">
