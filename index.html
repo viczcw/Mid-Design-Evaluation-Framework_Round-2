@@ -2024,27 +2024,60 @@ const Icon = ({ name, size = 18, className = "" }) => {
           <div className="space-y-6 animate-in">
             <div className="space-y-3">
               <div>
-                <h2 className="text-2xl font-bold">Interest-Holders Required to Evaluate</h2>
+                <h2 className="text-2xl font-bold">
+                  Interest-Holders Required to Evaluate
+                </h2>
+
                 <p className="text-sm text-gray-500">
-                  Choose how to view interest-holder guidance: by implementation outcome, by interest-holder group, or both.
+                  Choose how to view interest-holder guidance: by implementation
+                  outcome or by interest-holder group.
                 </p>
               </div>
+
               <InterestHoldersIntro />
+
               {hasFutureInterestGroups(getSelectedData) && (
                 <InterestHolderGlossary />
               )}
+
               <CaseInterestHolderSummariesSection />
             </div>
 
             <div className="bg-white rounded-xl border border-gray-200 p-3 shadow-sm">
               <div className="flex flex-wrap gap-2">
-                {[["byOutcome", "By implementation outcome"], ["byStakeholder", "By interest-holder group"], ["both", "Both"]].map(([value, label]) => (
-                  <button key={value} onClick={() => setStakeholderViewMode(value)} className={`px-4 py-2 rounded-lg text-sm font-bold transition ${stakeholderViewMode === value ? "bg-indigo-600 text-white shadow-sm" : "bg-gray-100 text-gray-700 hover:bg-gray-200"}`}>{label}</button>
+                {[
+                  [
+                    "byOutcome",
+                    "By implementation outcome"
+                  ],
+                  [
+                    "byStakeholder",
+                    "By interest-holder group"
+                  ]
+                ].map(([value, label]) => (
+                  <button
+                    key={value}
+                    type="button"
+                    onClick={() => setStakeholderViewMode(value)}
+                    className={`px-4 py-2 rounded-lg text-sm font-bold transition ${
+                      stakeholderViewMode === value
+                        ? "bg-indigo-600 text-white shadow-sm"
+                        : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                    }`}
+                  >
+                    {label}
+                  </button>
                 ))}
               </div>
             </div>
-            {(stakeholderViewMode === "byOutcome" || stakeholderViewMode === "both") && (<div className="space-y-3">{stakeholderViewMode === "both" && (<div><h3 className="text-lg font-bold text-gray-900">By implementation outcome</h3><p className="text-sm text-gray-500">Identify which interest-holder groups are relevant for each selected implementation outcome.</p></div>)}<OutcomeCenteredInterestHolderView /></div>)}
-            {(stakeholderViewMode === "byStakeholder" || stakeholderViewMode === "both") && (<div className="space-y-3">{stakeholderViewMode === "both" && (<div className="pt-2"><h3 className="text-lg font-bold text-gray-900">By interest-holder group</h3><p className="text-sm text-gray-500">Identify which implementation outcomes should be prioritized for each interest-holder group.</p></div>)}<InterestHolderCenteredView /></div>)}
+
+            {stakeholderViewMode === "byOutcome" && (
+              <OutcomeCenteredInterestHolderView />
+            )}
+
+            {stakeholderViewMode === "byStakeholder" && (
+              <InterestHolderCenteredView />
+            )}
           </div>
         );
       };
