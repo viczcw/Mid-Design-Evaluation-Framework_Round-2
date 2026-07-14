@@ -1251,6 +1251,37 @@ const Icon = ({ name, size = 18, className = "" }) => {
       );
     };
 
+    const OutcomeJumpLink = ({
+      onClick,
+      direction = "down",
+      children,
+      className = ""
+    }) => (
+      <button
+        type="button"
+        onClick={onClick}
+        className={`inline-flex items-center gap-1 text-xs font-semibold text-indigo-600 hover:text-indigo-800 hover:underline underline-offset-2 transition-colors ${className}`}
+      >
+        {direction === "up" && (
+          <Icon
+            name="arrow-up"
+            size={13}
+            className="text-current"
+          />
+        )}
+
+        {children}
+
+        {direction === "down" && (
+          <Icon
+            name="arrow-down"
+            size={13}
+            className="text-current"
+          />
+        )}
+      </button>
+    );
+
     const OutcomeExamplesBox = ({ examples, className = "mt-4" }) => {
       if (!examples || examples.length === 0) return null;
 
@@ -1274,17 +1305,22 @@ const Icon = ({ name, size = 18, className = "" }) => {
       );
     };
 
-    const OutcomeCaseIllustrationCard = ({ outcome }) => {
-      const [open, setOpen] = useState(false);
+    const OutcomeCaseIllustrationCard = ({
+      outcome,
+      open,
+      onToggle,
+      onBackToOutcome
+    }) => {
       const tone = colorStyles[outcome.type];
 
       return (
         <div
-          className={`rounded-xl border ${tone.card} bg-white overflow-hidden avoid-break`}
+          id={`case-illustration-${outcome.id}`}
+          className={`scroll-mt-40 rounded-xl border ${tone.card} bg-white overflow-hidden avoid-break`}
         >
           <button
             type="button"
-            onClick={() => setOpen(!open)}
+            onClick={onToggle}
             aria-expanded={open}
             className={`w-full px-4 py-3 text-left flex items-start justify-between gap-3 ${tone.header}`}
           >
@@ -1317,36 +1353,47 @@ const Icon = ({ name, size = 18, className = "" }) => {
           </button>
 
           {open && (
-            <div className="p-4 grid grid-cols-1 lg:grid-cols-3 gap-3">
-              {outcome.outcomeExamples.map((example, index) => {
-                const caseExample = CASE_EXAMPLES[index];
+            <div className="p-4">
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
+                {outcome.outcomeExamples.map((example, index) => {
+                  const caseExample = CASE_EXAMPLES[index];
 
-                return (
-                  <div
-                    key={`${outcome.id}-${caseExample.id}`}
-                    className="rounded-xl border border-gray-200 bg-gray-50 p-4"
-                  >
-                    <h5 className="font-bold text-sm text-gray-900">
-                      {caseExample.title}
-                      <Sup>{example.citation}</Sup>
-                    </h5>
+                  return (
+                    <div
+                      key={`${outcome.id}-${caseExample.id}`}
+                      className="rounded-xl border border-gray-200 bg-gray-50 p-4"
+                    >
+                      <h5 className="font-bold text-sm text-gray-900">
+                        {caseExample.title}
+                        <Sup>{example.citation}</Sup>
+                      </h5>
 
-                    <p className="text-xs italic text-gray-500 mt-1">
-                      {caseExample.expertiseArea}
-                    </p>
+                      <p className="text-xs italic text-gray-500 mt-1">
+                        {caseExample.expertiseArea}
+                      </p>
 
-                    <p className="text-xs text-gray-700 leading-relaxed mt-3">
-                      {example.text}
-                    </p>
-                  </div>
-                );
-              })}
+                      <p className="text-xs text-gray-700 leading-relaxed mt-3">
+                        {example.text}
+                      </p>
+                    </div>
+                  );
+                })}
+              </div>
+
+              <div className="mt-4 pt-3 border-t border-gray-100">
+                <OutcomeJumpLink
+                  direction="up"
+                  onClick={onBackToOutcome}
+                >
+                  Back to {outcome.title}
+                </OutcomeJumpLink>
+              </div>
             </div>
           )}
         </div>
       );
     };
-    
+  
     const OutcomeRelationshipNote = ({ note, className = "mt-3" }) => {
       if (!note) return null;
 
@@ -1535,7 +1582,11 @@ const Icon = ({ name, size = 18, className = "" }) => {
       </section>
     );
 
-    const OutcomeCaseIllustrationsSection = () => (
+    const OutcomeCaseIllustrationsSection = ({
+      openOutcomeId,
+      onToggleOutcome,
+      onBackToOutcome
+    }) => (
       <section className="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
         <div className="bg-gray-50 border-b border-gray-200 px-4 py-3">
           <h3 className="font-bold text-lg text-gray-900">
@@ -1553,6 +1604,9 @@ const Icon = ({ name, size = 18, className = "" }) => {
             <OutcomeCaseIllustrationCard
               key={outcome.id}
               outcome={outcome}
+              open={openOutcomeId === outcome.id}
+              onToggle={() => onToggleOutcome(outcome.id)}
+              onBackToOutcome={() => onBackToOutcome(outcome.id)}
             />
           ))}
         </div>
@@ -1849,8 +1903,44 @@ const Icon = ({ name, size = 18, className = "" }) => {
         </div>
       );
 
-      const SelectionView = () => (
-        <div className="space-y-6 animate-in">
+      const SelectionView = () => {
+        const [openCaseOutcomeId, setOpenCaseOutcomeId] = useState(null);
+
+        const scrollToElement = (elementId) => {
+          window.requestAnimationFrame(() => {
+            const element = document.getElementById(elementId);
+
+            if (element) {
+              element.scrollIntoView({
+                behavior: "smooth",
+                block: "start"
+              });
+            }
+          });
+        };
+
+        const openCaseIllustration = (outcomeId) => {
+          setOpenCaseOutcomeId(outcomeId);
+
+          window.requestAnimationFrame(() => {
+            window.requestAnimationFrame(() => {
+              scrollToElement(`case-illustration-${outcomeId}`);
+            });
+          });
+        };
+
+        const returnToOutcome = (outcomeId) => {
+          scrollToElement(`outcome-card-${outcomeId}`);
+        };
+
+        const toggleCaseIllustration = (outcomeId) => {
+          setOpenCaseOutcomeId((currentId) =>
+            currentId === outcomeId ? null : outcomeId
+          );
+        };
+
+        return (
+          <div className="space-y-6 animate-in">
           <div className="space-y-3">
             <div>
               <h2 className="text-2xl font-bold">Implementation Outcomes</h2>
@@ -1867,67 +1957,96 @@ const Icon = ({ name, size = 18, className = "" }) => {
           </div>
 
           <div className="grid grid-cols-1 gap-4">
-            {FRAMEWORK_DATA.map((outcome) => (
-              <button
-                key={outcome.id}
-                type="button"
-                onClick={() => toggleOutcome(outcome.id)}
-                className={`p-5 rounded-xl border-2 text-left transition-all relative group flex flex-col items-start ${
-                  selectedOutcomes.includes(outcome.id)
-                    ? outcome.type === "design"
-                      ? "border-emerald-500 bg-emerald-50 ring-2 ring-emerald-100"
-                      : outcome.type === "transitionary"
-                        ? "border-purple-500 bg-purple-50 ring-2 ring-purple-100"
-                        : "border-slate-600 bg-slate-50 ring-2 ring-slate-100"
-                    : "border-gray-200 bg-white hover:border-gray-300 shadow-sm"
-                }`}
-              >
-                {selectedOutcomes.includes(outcome.id) && (
-                  <div className="absolute top-4 right-4">
-                    <Icon
-                      name="circle-check"
-                      size={20}
-                      className={
-                        outcome.type === "design"
-                          ? "text-emerald-600"
-                          : outcome.type === "transitionary"
-                            ? "text-purple-600"
-                            : "text-slate-600"
-                      }
-                    />
+            {FRAMEWORK_DATA.map((outcome) => {
+              const selected = selectedOutcomes.includes(outcome.id);
+
+              return (
+                <div
+                  key={outcome.id}
+                  id={`outcome-card-${outcome.id}`}
+                  role="button"
+                  tabIndex={0}
+                  aria-pressed={selected}
+                  onClick={() => toggleOutcome(outcome.id)}
+                  onKeyDown={(event) => {
+                    if (event.key === "Enter" || event.key === " ") {
+                      event.preventDefault();
+                      toggleOutcome(outcome.id);
+                    }
+                  }}
+                  className={`scroll-mt-40 p-5 rounded-xl border-2 text-left transition-all relative group flex flex-col items-start cursor-pointer ${
+                    selected
+                      ? outcome.type === "design"
+                        ? "border-emerald-500 bg-emerald-50 ring-2 ring-emerald-100"
+                        : outcome.type === "transitionary"
+                          ? "border-purple-500 bg-purple-50 ring-2 ring-purple-100"
+                          : "border-slate-600 bg-slate-50 ring-2 ring-slate-100"
+                      : "border-gray-200 bg-white hover:border-gray-300 shadow-sm"
+                  }`}
+                >
+                  {selected && (
+                    <div className="absolute top-4 right-4">
+                      <Icon
+                        name="circle-check"
+                        size={20}
+                        className={
+                          outcome.type === "design"
+                            ? "text-emerald-600"
+                            : outcome.type === "transitionary"
+                              ? "text-purple-600"
+                              : "text-slate-600"
+                        }
+                      />
+                    </div>
+                  )}
+
+                  <div className="flex flex-wrap items-center gap-2 pr-8">
+                    <h3 className="font-bold text-lg text-gray-900">
+                      {outcome.title}
+                    </h3>
+
+                    <span className={outcomeUseBubbleClass(outcome.type)}>
+                      {measureLabel(outcome.type)}
+                    </span>
                   </div>
-                )}
 
-                <div className="flex flex-wrap items-center gap-2 pr-8">
-                  <h3 className="font-bold text-lg text-gray-900">
-                    {outcome.title}
-                  </h3>
+                  <p className="text-sm text-gray-600 mt-3 leading-relaxed italic">
+                    {outcome.definition}
+                  </p>
 
-                  <span className={outcomeUseBubbleClass(outcome.type)}>
-                    {measureLabel(outcome.type)}
-                  </span>
+                  <RelevantTermsBox
+                    terms={outcome.relatedTerms}
+                    className="mt-4"
+                  />
+
+                  <OutcomeRelationshipNote
+                    note={outcome.relationshipNote}
+                    className="mt-4"
+                  />
+
+                  <div className="mt-4 pt-3 border-t border-gray-200/70 w-full">
+                    <OutcomeJumpLink
+                      direction="down"
+                      onClick={(event) => {
+                        event.stopPropagation();
+                        openCaseIllustration(outcome.id);
+                      }}
+                    >
+                      View case illustrations
+                    </OutcomeJumpLink>
+                  </div>
                 </div>
-
-                <p className="text-sm text-gray-600 mt-3 leading-relaxed italic">
-                  {outcome.definition}
-                </p>
-
-                <RelevantTermsBox
-                  terms={outcome.relatedTerms}
-                  className="mt-4"
-                />
-
-                <OutcomeRelationshipNote
-                  note={outcome.relationshipNote}
-                  className="mt-4"
-                />
-              </button>
-            ))}
+              );
+            })}
           </div>
 
           <CaseExamplesSection />
 
-          <OutcomeCaseIllustrationsSection />
+          <OutcomeCaseIllustrationsSection
+            openOutcomeId={openCaseOutcomeId}
+            onToggleOutcome={toggleCaseIllustration}
+            onBackToOutcome={returnToOutcome}
+          />
 
           <ReferenceReminder />
         </div>
@@ -1946,9 +2065,10 @@ const Icon = ({ name, size = 18, className = "" }) => {
 
           <FoundationalGuidingFrameworksSection />
 
-          <ReferenceReminder />
-        </div>
-      );
+            <ReferenceReminder />
+          </div>
+        );
+      };
 
       const StakeholderView = () => {
         const OutcomeCenteredInterestHolderView = () => (
@@ -2120,7 +2240,7 @@ const Icon = ({ name, size = 18, className = "" }) => {
                         size={12}
                       />
 
-                      Qualitative or Mixed-Method Evaluation Strategies
+                      Qualitative Evaluation Strategies
                     </h4>
 
                     <div className="space-y-3">
@@ -2250,7 +2370,7 @@ const Icon = ({ name, size = 18, className = "" }) => {
 
                   <div className="md:col-span-5 border-l border-gray-100 pl-0 md:pl-5">
                     <h4 className="text-[10px] font-black text-blue-700 uppercase tracking-widest mb-3 flex items-center gap-1">
-                      <Icon name="help-circle" size={12} /> Qualitative or Mixed-Method Evaluation Strategies
+                      <Icon name="help-circle" size={12} /> Qualitative Evaluation Strategies
                     </h4>
                     <div className="space-y-3">
                       <div className="rounded-xl border border-blue-100 bg-blue-50/30 p-3">
@@ -2441,7 +2561,7 @@ const Icon = ({ name, size = 18, className = "" }) => {
                       <div>
                         <div className="flex flex-col gap-2 md:flex-row md:items-center md:justify-between mb-3">
                           <h4 className="text-[11px] font-black uppercase tracking-widest text-indigo-700">
-                            Qualitative or mixed evaluation strategies to include
+                            Qualitative evaluation strategies to include
                           </h4>
                           <div className="flex items-center gap-3">
                             <button
@@ -2645,7 +2765,7 @@ const Icon = ({ name, size = 18, className = "" }) => {
 
                         <div>
                           <h4 className="text-[11px] font-black uppercase tracking-widest text-indigo-700 mb-2">
-                            Qualitative or mixed evaluation strategies included
+                            Qualitative evaluation strategies included
                           </h4>
                           {selectedQualitativeStrategies.length > 0 ? (
                             <ul className="list-disc pl-5 space-y-1 text-sm text-gray-700 leading-relaxed">
