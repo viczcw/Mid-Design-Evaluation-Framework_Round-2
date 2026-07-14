@@ -1909,13 +1909,28 @@ const Icon = ({ name, size = 18, className = "" }) => {
         const scrollToElement = (elementId) => {
           window.requestAnimationFrame(() => {
             const element = document.getElementById(elementId);
+            const stickyNavigation = document.getElementById(
+              "sticky-guide-navigation"
+            );
 
-            if (element) {
-              element.scrollIntoView({
-                behavior: "smooth",
-                block: "start"
-              });
-            }
+            if (!element) return;
+
+            const stickyHeight = stickyNavigation
+              ? stickyNavigation.getBoundingClientRect().height
+              : 0;
+
+            const additionalSpacing = 24;
+
+            const targetPosition =
+              element.getBoundingClientRect().top +
+              window.scrollY -
+              stickyHeight -
+              additionalSpacing;
+
+            window.scrollTo({
+              top: Math.max(targetPosition, 0),
+              behavior: "smooth"
+            });
           });
         };
 
@@ -2051,24 +2066,26 @@ const Icon = ({ name, size = 18, className = "" }) => {
           <ReferenceReminder />
         </div>
       );
+    };
 
-      const FoundationalFrameworksView = () =>(
-        <div className="space-y-6 animate-in"> 
-          <div className="space-y-3">
-            <div>
-              <h2 className="text-2xl font-bold">Foundational Guiding Frameworks</h2>
-              <p className="text-sm text-gray-500">
-                Review cross-cutting frameworks that can guide mid-design evaluation planning across implementation outcomes.
-              </p>
-            </div>
+    const FoundationalFrameworksView = () => (
+        <div className="space-y-6 animate-in">
+          <div>
+            <h2 className="text-2xl font-bold">
+              Foundational Guiding Frameworks
+            </h2>
+
+            <p className="mt-1 text-sm text-gray-500">
+              Review cross-cutting frameworks that can guide mid-design
+              evaluation planning across implementation outcomes.
+            </p>
           </div>
 
           <FoundationalGuidingFrameworksSection />
 
-            <ReferenceReminder />
-          </div>
-        );
-      };
+          <ReferenceReminder />
+        </div>
+      );
 
       const StakeholderView = () => {
         const OutcomeCenteredInterestHolderView = () => (
@@ -2856,7 +2873,10 @@ const Icon = ({ name, size = 18, className = "" }) => {
               </div>
             </div>
 
-            <div className="sticky top-0 z-30 mb-6 print:hidden bg-gray-50 pb-3">
+            <div
+              id="sticky-guide-navigation"
+              className="sticky top-0 z-30 mb-6 print:hidden bg-gray-50 pb-3"
+            >
               <div className="bg-gray-50 border border-gray-200 rounded-2xl p-2 shadow-sm overflow-x-auto">
                 <div className="flex flex-nowrap gap-1.5 min-w-max">
                   {tabs.map((tab) => {
